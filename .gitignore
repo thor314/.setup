@@ -1,0 +1,5 @@
+zsh.d/zsh_history
+debs/*
+clones/*
+*zcompdump*
+*.swp
