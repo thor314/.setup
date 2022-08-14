@@ -106,3 +106,5 @@ ci rustfilt # rust demangler
 ci cargo-deps # graph dependencies
 agi graphviz # graphing tools, including dot
 agi graphviz # graphing tools, including dot
+
+agi mold # linker
