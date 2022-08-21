@@ -108,3 +108,10 @@ agi graphviz # graphing tools, including dot
 agi graphviz # graphing tools, including dot
 
 agi mold # linker
+
+sudo snap install docker circleci
+sudo snap connect circleci:docker docker
+
+# https://github.com/romkatv/powerlevel10k. Fonts should be vc'd by dotbot and set up by alacritty.
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.zsh.d/oh-my-zsh/custom}/themes/powerlevel10k
+
