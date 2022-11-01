@@ -99,7 +99,8 @@ guis(){
   flatpak install md.obsidian.Obsidian # flat > snap, so that git extension works
   $SH/configure_alacritty.zsh
   cd debs
-  wget https://zoom.us/client/latest/zoom_amd64.deb && dpkg -i zoom_amd64.deb
+  # Issues with the deb and snap installs, use flatpak
+  flatpak install flathub us.zoom.Zoom
   wget https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb
   agi gnome-shell-extension-appindicator gir1.2-appindicator3-0.1 #deps
   sudo dpkg -i protonvpn-stable-release_1.0.1-1_all.deb

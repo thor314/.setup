@@ -115,3 +115,34 @@ sudo snap connect circleci:docker docker
 # https://github.com/romkatv/powerlevel10k. Fonts should be vc'd by dotbot and set up by alacritty.
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.zsh.d/oh-my-zsh/custom}/themes/powerlevel10k
 
+# linter for dotenv files https://github.com/dotenv-linter/dotenv-linter
+curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
+
+# autogenerate changelog from git commit messages https://github.com/orhun/git-cliff
+# cargo install git-cliff
+
+# PW manager. don't use snap sandbox.
+flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
+
+# LeftWM and leftwm-theme
+cargo install leftwm
+sudo cp $HOME/.config/leftwm/leftwm.desktop /usr/share/xsessions # link the xsession desktop file to make findable to display manager
+pushd $HOME/.setup/clones 
+git clone https://github.com/leftwm/leftwm-theme && cd leftwm-theme
+cargo build --release
+sudo install -s -Dm755 ./target/release/leftwm-theme -t /usr/bin
+agi feh xmobar lemonbar polybar conky dmenu
+gcl git@github.com:leftwm/leftwm-config.git .. && cd ../leftwm-config
+cargo build --release
+cp target/release/leftwm-config $HOME/.cargo/bin
+popd
+
+# picom, a compositor fork of compton
+pushd $HOME/.setup/clones 
+agi libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl-dev libegl-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson
+gcl git@github.com:yshui/picom.git && cd picom
+git submodule update --init --recursive
+meson --buildtype=release . build
+sudo ninja -C build install
+popd
+
