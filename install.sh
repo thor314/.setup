@@ -150,6 +150,7 @@ cargotools(){
   ci cargo-generate
   ci rusty-rain
   ci taplo-cli --locked # toml formatter
+  ci lsd
   $SH/helix.sh
   # may be deprecated soon when RA bin gets included in cargo
   # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
@@ -172,17 +173,22 @@ othertools(){
   sudo dpkg -i protonvpn-stable-release_1.0.1-1_all.deb
   agi protonvpn-cli && popd
   # CLI
-  pushd ../clones && gh clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
+  pushd ../clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
   # GUI
   sni firefox
   sni chromium # secondary browser
-  sni signal-desktop # messaging
+  # https://signal.org/en/download/linux/
+  wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+  cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+  echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+  sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+  sudo apt update && agi signal-desktop
   sni spotify # spotify
   sni code --classic
   # use flatpak instead if using git backups to avoid snap sandbox
-  pushd debs && wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
-  snap install obsidian_*.snap && popd
-  flatpak install flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
+  pushd $HOME/.setup/debs && wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
+  snap install --dangerous --classic obsidian_*.snap && popd
+  flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
@@ -201,9 +207,9 @@ othertools(){
   rm dict
 
   # https://github.com/micahflee/torbrowser-launcher
-  flatpak install flathub com.github.micahflee.torbrowser-launcher -y
+  flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
   # PW manager. don't use snap sandbox.
-  flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
+  flatpak install -y https://downloads.1password.com/linux/flatpak/1Password.flatpakref
 }
 
 fonts(){
@@ -222,6 +228,7 @@ homesetup(){
   hub clone keep
   hub clone note
   hub clone web
+  hub clone .private
   hub clone pazk zk
   popd
 }
