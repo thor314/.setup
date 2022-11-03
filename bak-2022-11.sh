@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 # Where unsorted commands should go
 # If I get around to another refactor, reference:
 # https://github.com/rsnk96/Ubuntu-Setup-Scripts/blob/main/1-BasicSetUp.sh
@@ -16,6 +16,9 @@ agu && agi docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # systemctl --user start docker-desktop # start session
 # systemctl --user enable docker-desktop # enable start on login
 docker compose version # running?
+# Or:
+sudo snap install docker circleci
+sudo snap connect circleci:docker docker
 
 cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
 # snap install zotero-snap # not actually useful
@@ -23,24 +26,13 @@ cargo install spotify-tui
 cargo install cargo-generate
 agi valgrind # dynamic analysis framewor
 cargo install gitui
+cargo install so # stack overflow tui
 pip install rainbowstream
-curl -LO https://github.com/BetaPictoris/dict/releases/latest/download/dict    # dict
-sudo install -Dt /usr/local/bin -m 755 dict
-rm dict
 
-# https://github.com/micahflee/torbrowser-launcher
-flatpak install flathub com.github.micahflee.torbrowser-launcher -y
-
-# video editing/recording
-agi obs-studio # record
-agi vlc # simple playback
 # download fat 2.5Gb Davinci package   
 # https://www.blackmagicdesign.com/products/davinciresolve/
 # specifically for zk-hack group: https://drive.google.com/drive/folders/1Lt5-ehCF20cfX5KMQZp8VmvIRQPSMulJ
 # Edit graphics in Canva
-
-cargo install rusty-rain # matrix silliness
-cargo install so # stack overflow tui
 
 # install rhai
 cd clones
@@ -75,17 +67,6 @@ ln -s codelldb_adapter/adapter/codelldb "$HOME/.local/bin/codelldb"
 ln -s codelldb_adapter/adapter/codelldb "$HOME/.local/bin/lldb-vscode"
 popd
 
-# https://taplo.tamasfe.dev/cli/installation/cargo.html
-cargo install taplo-cli --locked
-
-# https://github.com/python-lsp/python-lsp-server
-pip install python-lsp-server
-
-# https://github.com/bash-lsp/bash-language-server
-npm i -g bash-language-server
-# https://www.shellcheck.net/
-sudo apt install shellcheck
-
 # terminal html rendering tools
 pip install html2text
 agi w3m # prints html to text
@@ -104,45 +85,11 @@ ci inferno
 # misc
 ci rustfilt # rust demangler
 ci cargo-deps # graph dependencies
-agi graphviz # graphing tools, including dot
-agi graphviz # graphing tools, including dot
-
 agi mold # linker
-
-sudo snap install docker circleci
-sudo snap connect circleci:docker docker
-
-# https://github.com/romkatv/powerlevel10k. Fonts should be vc'd by dotbot and set up by alacritty.
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.zsh.d/oh-my-zsh/custom}/themes/powerlevel10k
 
 # linter for dotenv files https://github.com/dotenv-linter/dotenv-linter
 curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
 
 # autogenerate changelog from git commit messages https://github.com/orhun/git-cliff
 # cargo install git-cliff
-
-# PW manager. don't use snap sandbox.
-flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
-
-# LeftWM and leftwm-theme
-cargo install leftwm
-sudo cp $HOME/.config/leftwm/leftwm.desktop /usr/share/xsessions # link the xsession desktop file to make findable to display manager
-pushd $HOME/.setup/clones 
-git clone https://github.com/leftwm/leftwm-theme && cd leftwm-theme
-cargo build --release
-sudo install -s -Dm755 ./target/release/leftwm-theme -t /usr/bin
-agi feh xmobar lemonbar polybar conky dmenu
-gcl git@github.com:leftwm/leftwm-config.git .. && cd ../leftwm-config
-cargo build --release
-cp target/release/leftwm-config $HOME/.cargo/bin
-popd
-
-# picom, a compositor fork of compton
-pushd $HOME/.setup/clones 
-agi libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl-dev libegl-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson
-gcl git@github.com:yshui/picom.git && cd picom
-git submodule update --init --recursive
-meson --buildtype=release . build
-sudo ninja -C build install
-popd
 

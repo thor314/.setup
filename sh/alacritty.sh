@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-cd $HOME/.files/setup/clones
+
+pushd $HOME/.setup/clones
 
 git clone git@github.com:alacritty/alacritty.git
 cd alacritty
@@ -16,5 +17,5 @@ mkdir -p ${ZDOTDIR:-~}/.zsh_functions
 echo 'fpath+=${ZDOTDIR:-~}/.zsh_functions' >> ${ZDOTDIR:-~}/.zshrc
 cp extra/completions/_alacritty ${ZDOTDIR:-~}/.zsh_functions/_alacritty
 
-cd $HOME/.files/setup
+popd
 
