@@ -228,9 +228,12 @@ homesetup(){
   hub clone keep
   hub clone note
   hub clone web
-  hub clone .private
   hub clone pazk zk
+  hub clone .private && cd .private && dotbot -c install.conf.yaml
   popd
+  echo "\n\nmy ip address is $(hostname -I | cut --delimiter=' ' -f1)"
+  echo "get shared key from another machine: "
+  echo "gpg --export-secret-keys thor-shared | ssh thor@ip gpg --import"
 }
 
 wmutils(){
@@ -244,6 +247,7 @@ wmutils(){
   $SH/leftwm.sh
   $SH/picom.sh
 }
+
 # UNDONE (probably less hassle to do this by hand)
 echo "manually poke settings"
 echo "increase mouse speed, set natural scrolling"
