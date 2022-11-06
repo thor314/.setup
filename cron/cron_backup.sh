@@ -5,7 +5,8 @@
 echo "cronlog: $(hostname)-$(date -u +%Y-%m-%d\ %H:%M%Z)" >> /home/thor/.setup/cron/cronlog
 
 cd /home/thor/.setup
-eval `ssh-agent -s`
+eval $(ssh-agent)
+ssh-add /home/thor/.ssh/id_25519
 git add --all && git commit -m "$(hostname)-$(date -u +%Y-%m-%d\ %H:%M%Z)" 
 git pull 
 git push
