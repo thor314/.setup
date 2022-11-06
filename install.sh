@@ -227,7 +227,7 @@ homesetup(){
   hub clone profile img/profile
   hub clone keep
   hub clone note
-  hub clone web
+  hub clone uncloak
   hub clone pazk zk
   hub clone .private && cd .private && dotbot -c install.conf.yaml
   popd
@@ -248,14 +248,14 @@ wmutils(){
   $SH/picom.sh
 }
 
-crons(){
+setupcrons(){
   # set up cronscripts in /var/spool
-  sudo cat $HOME/.setup/crons >> /var/spool/cron/crontabs/thor
-  echo "cron is finicky as heck. First step is to pray to higher powers." && sleep 2
-  echo "hope you prayed." 
-  echo "running this multiple times will blow up my cron. Check that my crontab is correct:" 
-  sudo cat /var/spool/cron/crontabs/thor
-  echo "should match: \n$(cat $HOME/.setup/crons)"
+  echo "calling crontab -e, copy and manually paste the following into it"
+  cat $HOME/.setup/crons
+  read -p "Copy and press enter to continue"
+  crontab -e
+  echo "did you forget to include a newline at the end of the crontab?"
+
 }
 
 # UNDONE (probably less hassle to do this by hand)
