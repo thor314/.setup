@@ -93,3 +93,5 @@ curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
 # autogenerate changelog from git commit messages https://github.com/orhun/git-cliff
 # cargo install git-cliff
 
+
+
