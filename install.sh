@@ -40,7 +40,7 @@ getcredentials(){
   ssh-add ~/.ssh/id_ed25519
   echo "\ntell github about your new ssh key:\n"
   cat $HOME/.ssh/id_ed25519.pub
-  read -p "Press enter to continue"
+  read "tmp?Press enter to continue"
 
   # https://github.com/microsoft/Git-Credential-Manager-Core#linux-install-instructions
   echo "This will run in the background, reducing 2FA weight when talking to github."
@@ -52,9 +52,9 @@ getcredentials(){
   echo "generate a gpg key. Choose 4096 when prompted."
   gpg --full-generate-key
   gpg --list-secret-keys --keyid-format LONG
-  read -p pubkey "\nEnter your key id: "
+  read  "pubkey?Enter your key id: "
   gpg --armor --export $pubkey
-  read -p "\ntell github about your new gpg key:\n\n press enter to continue"
+  read  "tmp?tell github about your new gpg key:\n\n press enter to continue"
   echo "done. For github ssh and gpg help: https://docs.github.com/en/github-ae@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
 }
 
@@ -231,9 +231,16 @@ homesetup(){
   hub clone pazk zk
   hub clone .private && cd .private && dotbot -c install.conf.yaml
   popd
+
+  agi openssh-server
+  sudo systemctl start ssh
+  sudo systemctl enable ssh
   echo "\n\nmy ip address is $(hostname -I | cut --delimiter=' ' -f1)"
-  echo "get shared key from another machine: "
-  echo "gpg --export-secret-keys thor-shared | ssh thor@ip gpg --import"
+  echo "get shared key from another machine. From my other trusted machine, enter:"
+  echo "gpg --export-secret-keys thor-shared | ssh thor@IPADDRESS gpg --import"
+  echo "if that worked, I should be able to open my secrets file. Add my ip to env vars".
+  read "tmp?press enter to continue"
+  vi $HOME/.private/secrets.gpg
 }
 
 wmutils(){
@@ -252,7 +259,7 @@ setupcrons(){
   # set up cronscripts in /var/spool
   echo "calling crontab -e, copy and manually paste the following into it"
   cat $HOME/.setup/crons
-  read -p "Copy and press enter to continue"
+  read "tmp?Copy and press enter to continue"
   crontab -e
   echo "did you forget to include a newline at the end of the crontab?"
 
