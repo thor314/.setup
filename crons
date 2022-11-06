@@ -1,5 +1,5 @@
 # back up dotfiles and private dotfiles every 10 minutes
-*/10 * * * * sh /home/thor/.files/cron/cron_dotfiles.sh &>> /home/thor/.files/cron/cronlog
-*/10 * * * * sh /home/thor/.private/cron/cron_dotprivate.sh &>> /home/thor/.private/cron/cronlog
-*/10 * * * * sh /home/thor/.setup/cron/cron_backup.sh &>> /home/thor/.setup/cron/cronlog
+*/10 * * * * sh /home/thor/.files/cron/cron_dotfiles.sh 2>> /home/thor/.files/cron/cronlog
+*/10 * * * * sh /home/thor/.private/cron/cron_dotprivate.sh 2>> /home/thor/.private/cron/cronlog
+*/10 * * * * sh /home/thor/.setup/cron/cron_backup.sh 2>> /home/thor/.setup/cron/cronlog
 
