@@ -258,7 +258,7 @@ wmutils(){
 setupcrons(){
   # set up cronscripts in /var/spool
   echo "calling crontab -e, copy and manually paste the following into it"
-  cat $HOME/.setup/crons
+  cat $HOME/.setup/crontab
   read "tmp?Copy and press enter to continue"
   crontab -e
   echo "did you forget to include a newline at the end of the crontab?"
