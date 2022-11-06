@@ -3,3 +3,4 @@ debs/*
 clones/*
 *zcompdump*
 *.swp
+cronlog

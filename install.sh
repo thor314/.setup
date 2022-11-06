@@ -248,6 +248,15 @@ wmutils(){
   $SH/picom.sh
 }
 
+crons(){
+  # set up cronscripts in /var/spool
+  sudo cat $HOME/.setup/crons >> /etc/crontab
+  sudo cat $HOME/.setup/crons >> /var/spool/cron/crontabs/thor
+  echo "running this multiple times will blow up my cron. Check that my is correct:" 
+  sudo cat /var/spool/cron/crontabs/thor
+  echo "should match: \n$(cat $HOME/.setup/crons)"
+}
+
 # UNDONE (probably less hassle to do this by hand)
 echo "manually poke settings"
 echo "increase mouse speed, set natural scrolling"
