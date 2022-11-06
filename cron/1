@@ -1,0 +1,6 @@
+rm: cannot remove 'tmp'rm: cannot remove 'tmp': No such file or directory
+: No such file or directory
+rm: cannot remove 'tmp'rm: cannot remove 'tmp': No such file or directory: No such file or directory
+
+rm: cannot remove 'cronlog': No such file or directory
+rm: cannot remove 'cronlog': No such file or directory
