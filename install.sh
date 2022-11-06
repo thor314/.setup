@@ -251,6 +251,8 @@ wmutils(){
 crons(){
   # set up cronscripts in /var/spool
   sudo cat $HOME/.setup/crons >> /var/spool/cron/crontabs/thor
+  echo "cron is finicky as heck. First step is to pray to higher powers." && sleep 2
+  echo "hope you prayed." 
   echo "running this multiple times will blow up my cron. Check that my crontab is correct:" 
   sudo cat /var/spool/cron/crontabs/thor
   echo "should match: \n$(cat $HOME/.setup/crons)"
