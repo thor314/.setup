@@ -46,7 +46,6 @@ getcredentials(){
   echo "This will run in the background, reducing 2FA weight when talking to github."
   pushd $HOME/.setup/debs
   wget https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.696/gcmcore-linux_amd64.2.0.696.deb
-
   git-credential-manager-core configure && popd
 
   echo "generate a gpg key. Choose 4096 when prompted."
