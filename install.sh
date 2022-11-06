@@ -228,6 +228,7 @@ homesetup(){
   hub clone note
   hub clone uncloak
   hub clone pazk zk
+  hub clone cron 
   hub clone .private && cd .private && dotbot -c install.conf.yaml
   popd
 
