@@ -37,7 +37,7 @@ getvim(){
 getcredentials(){
   echo generate an ssh key
   ssh-keygen -t ed25519 -C thorck@pm.me
-  ssh-add ~/.ssh/id_ed25519
+  ssh-add 
   echo "\ntell github about your new ssh key:\n"
   cat $HOME/.ssh/id_ed25519.pub
   read "tmp?Press enter to continue"
