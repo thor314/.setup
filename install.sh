@@ -216,8 +216,10 @@ othertools(){
 fonts(){
   agi fonts-firacode # ligature enabled programming font
   agi fonts-karla # https://fonts.google.com/specimen/Karla
-  
-  # wget https://github.com/larsenwork/monoid/blob/master/Monoisome/Monoisome-Regular.ttf\?raw\=true
+  # already installed in my fonts backup:
+  # https://fonts.google.com/specimen/Karla
+  # https://brailleinstitute.org/freefont
+  # https://fonts.google.com/specimen/Lora#standard-styles
 }
 
 homesetup(){
