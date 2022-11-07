@@ -215,6 +215,8 @@ othertools(){
 
 fonts(){
   agi fonts-firacode # ligature enabled programming font
+  agi fonts-karla # https://fonts.google.com/specimen/Karla
+  
   # wget https://github.com/larsenwork/monoid/blob/master/Monoisome/Monoisome-Regular.ttf\?raw\=true
 }
 
