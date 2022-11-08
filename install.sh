@@ -112,6 +112,7 @@ apttools(){
   agi xdotool # simulate pressing buttons, very useful script utility
   agi hub # mostly deprecated for gh
   agi texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+  agi pandoc # export text files to other text files
   agi graphviz # graphing tools, including dot
   # GUIs
   agi gnome-tweaks # tweak destkop settings gui
