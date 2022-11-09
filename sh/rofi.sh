@@ -1,5 +1,7 @@
 #!/bin/bash
 # rofi emoji https://github.com/Mange/rofi-emoji
+# assume rofi is already installed, but run anyway:
+sudo apt install -y rofi
 
 pushd $HOME/.setup/clones
 git clone git@github.com:Mange/rofi-emoji.git 

@@ -151,13 +151,13 @@ cargotools(){
   ci rusty-rain
   ci taplo-cli --locked # toml formatter
   ci lsd
-  $SH/helix.sh
+  ./$SH/helix.sh
   # may be deprecated soon when RA bin gets included in cargo
   # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
   # chmod +x ~/.local/bin/rust-analyzer && popd
-  $SH/bat.sh
+  ./$SH/bat.sh
   # GUI tools
-  $SH/alacritty.sh
+  ./$SH/alacritty.sh
 }
 
 othertools(){
@@ -200,7 +200,7 @@ othertools(){
 
   go install github.com/yoheimuta/protolint/cmd/protolint@latest
   # Emoji option 1
-  $HOME/.files/setup/sh/rofi.sh
+  ./$HOME/.files/setup/sh/rofi.sh
   # Emoji option 2 (good)
   sni emote # emoji picker on ctrl-alt-e
 
@@ -258,8 +258,8 @@ wmutils(){
   agi conky # lightweight system monitor, display info
   agi dunst # desktop notifications
   agi xmobar lemonbar polybar # bars to play with
-  $SH/leftwm.sh
-  $SH/picom.sh
+  ./$SH/leftwm.sh
+  ./$SH/picom.sh
 }
 
 setupcrons(){
