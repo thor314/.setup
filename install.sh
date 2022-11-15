@@ -184,6 +184,7 @@ othertools(){
   snap install --dangerous --classic obsidian_*.snap 
   && popd
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
+  flatpak install -y flathub org.zotero.Zotero
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
