@@ -165,12 +165,6 @@ othertools(){
   # https://github.com/bash-lsp/bash-language-server
   npm i -g bash-language-server
   agi shellcheck # https://www.shellcheck.net/
-  # an ok vpn
-  pushd debs
-  wget https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb
-  agi gnome-shell-extension-appindicator gir1.2-appindicator3-0.1 #deps
-  sudo dpkg -i protonvpn-stable-release_1.0.1-1_all.deb
-  agi protonvpn-cli && popd
   # CLI
   pushd ../clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
   # GUI
