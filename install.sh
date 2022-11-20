@@ -1,4 +1,4 @@
-#!/bin/sh
+# !/bin/sh
 # Obtain this script:
 # git clone https://github.com/thor314/.setup.git && cd .setup
 # Use this script:
@@ -113,6 +113,7 @@ apttools(){
   agi texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
   agi pandoc # export text files to other text files
   agi graphviz # graphing tools, including dot
+  agi fd-find # replacement for find
   # GUIs
   agi gnome-tweaks # tweak destkop settings gui
   agi evince # pdf viewer
@@ -150,6 +151,7 @@ cargotools(){
   ci rusty-rain
   ci taplo-cli --locked # toml formatter
   ci lsd
+  ci sd # search replace, nicer than sed
   ./$SH/helix.sh
   # may be deprecated soon when RA bin gets included in cargo
   # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
@@ -184,7 +186,7 @@ othertools(){
   snap install --dangerous --classic obsidian_*.snap 
   && popd
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
-  flatpak install -y flathub org.zotero.Zotero
+  flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
