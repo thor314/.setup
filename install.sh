@@ -156,7 +156,12 @@ cargotools(){
   ci lsd
   ci sd # search replace, nicer than sed
   ci fd-find # find replacement
-  ./$SH/helix.sh
+
+  echo go here: https://github.com/artempyanykh/marksman/releases, install markdown language server
+  pushd $HOME/.setup/clones && git clone https://github.com/helix-editor/helix && cd helix
+  cargo install --path helix-term && popd
+  pushd $HOME/.setup/clones && wget https://github.com/artempyanykh/marksman/releases/download/2022-10-30/marksman-linux
+  mv marksman* marksman && chmod +x marksman && mv marksman $HOME/.local/bin
   # may be deprecated soon when RA bin gets included in cargo
   # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
   # chmod +x ~/.local/bin/rust-analyzer && popd
