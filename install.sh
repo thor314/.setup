@@ -7,9 +7,11 @@
 
 alias agi='sudo apt install -y'
 alias ci='cargo install'
-alias sni='sudo snap install'
+alias sni='sudo snap install -y'
 alias pipi='pip3 install'
 SH=$HOME/.setup/sh
+mkdir $SH/../clones
+mkdir $SH/../debs
 
 getzsh(){
   echo "shell is $SHELL"
@@ -44,7 +46,9 @@ getcredentials(){
   # https://github.com/microsoft/Git-Credential-Manager-Core#linux-install-instructions
   echo "This will run in the background, reducing 2FA weight when talking to github."
   pushd $HOME/.setup/debs
+  agi ./gcm* # may need to replace w dpkg -i
   wget https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.696/gcmcore-linux_amd64.2.0.696.deb
+
   git-credential-manager-core configure && popd
 
   echo "generate a gpg key. Choose 4096 when prompted."
@@ -57,10 +61,9 @@ getcredentials(){
 }
 
 getgh_hub(){
-  #snap install gh
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
   echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-  sudo apt update
+  sudo apt update -y
   agi gh
   agi hub
   gh auth login
@@ -83,6 +86,7 @@ getpms(){
   mv go1.18.2.linux-amd64.tar.gz $HOME/.setup/clones
   export PATH=$PATH:/usr/local/go/bin && go version && echo Go installed
 
+  mkdir $HOME/.config/nvm
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
   export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -113,7 +117,6 @@ apttools(){
   agi texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
   agi pandoc # export text files to other text files
   agi graphviz # graphing tools, including dot
-  agi fd-find # replacement for find
   # GUIs
   agi gnome-tweaks # tweak destkop settings gui
   agi evince # pdf viewer
@@ -152,6 +155,7 @@ cargotools(){
   ci taplo-cli --locked # toml formatter
   ci lsd
   ci sd # search replace, nicer than sed
+  ci fd-find # find replacement
   ./$SH/helix.sh
   # may be deprecated soon when RA bin gets included in cargo
   # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
@@ -168,23 +172,21 @@ othertools(){
   npm i -g bash-language-server
   agi shellcheck # https://www.shellcheck.net/
   # CLI
-  pushd ../clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
+  pushd $HOME/.setup/clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
   # GUI
   sni firefox
   sni chromium # secondary browser
   # https://signal.org/en/download/linux/
   wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
   cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-  echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
-  sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+   echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
   sudo apt update && agi signal-desktop
   sni spotify # spotify
   sni code --classic
   # use flatpak instead if using git backups to avoid snap sandbox
   pushd $HOME/.setup/debs
   wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
-  snap install --dangerous --classic obsidian_*.snap 
-  && popd
+  snap install --dangerous --classic obsidian_*.snap && popd
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   # buggy text replacement
@@ -206,8 +208,7 @@ othertools(){
 
   # https://github.com/micahflee/torbrowser-launcher
   flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
-  # PW manager. don't use snap sandbox.
-  flatpak install -y https://downloads.1password.com/linux/flatpak/1Password.flatpakref
+
 }
 
 fonts(){
