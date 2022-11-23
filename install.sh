@@ -117,6 +117,7 @@ apttools(){
   agi texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
   agi pandoc # export text files to other text files
   agi graphviz # graphing tools, including dot
+  agi git-filter-repo # holy shit a useful git tool for selectively filtering git history 
   # GUIs
   agi gnome-tweaks # tweak destkop settings gui
   agi evince # pdf viewer
