@@ -189,10 +189,10 @@ othertools(){
   sudo apt update && agi signal-desktop
   sni spotify # spotify
   sni code --classic
-  # use flatpak instead if using git backups to avoid snap sandbox
-  pushd $HOME/.setup/debs
-  wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
-  snap install --dangerous --classic obsidian_*.snap && popd
+  # todo: use flatpak instead if using git backups to avoid snap sandbox, and open browsers in the right spot
+  # pushd $HOME/.setup/debs
+  # wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
+  # snap install --dangerous --classic obsidian_*.snap && popd
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   # buggy text replacement
