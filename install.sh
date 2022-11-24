@@ -125,6 +125,7 @@ apttools(){
   agi discord
   agi obs-studio # record
   agi vlc # simple playback
+  agi firefox
 }
 
 pytools(){
@@ -180,7 +181,6 @@ othertools(){
   # CLI
   pushd $HOME/.setup/clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
   # GUI
-  sni firefox
   sni chromium # secondary browser
   # https://signal.org/en/download/linux/
   wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
@@ -189,10 +189,8 @@ othertools(){
   sudo apt update && agi signal-desktop
   sni spotify # spotify
   sni code --classic
-  # todo: use flatpak instead if using git backups to avoid snap sandbox, and open browsers in the right spot
-  # pushd $HOME/.setup/debs
-  # wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap
-  # snap install --dangerous --classic obsidian_*.snap && popd
+  # i'm learning: use flatpak > snap for less-sandboxed applications. eg: git backups, and open links in correct browser
+  flatpak install -y flathub md.obsidian.Obsidian
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   # buggy text replacement
