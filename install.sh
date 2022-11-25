@@ -193,6 +193,7 @@ othertools(){
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   flatpak install -y flathub com.obsproject.Studio
+  flatpak install -y flathub org.mozilla.Thunderbird
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
