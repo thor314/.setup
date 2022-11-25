@@ -123,7 +123,6 @@ apttools(){
   agi evince # pdf viewer
   agi telegram-desktop # messaging
   agi discord
-  agi obs-studio # record
   agi vlc # simple playback
   agi firefox
 }
@@ -193,6 +192,7 @@ othertools(){
   flatpak install -y flathub md.obsidian.Obsidian
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
+  flatpak install -y flathub com.obsproject.Studio
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
