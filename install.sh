@@ -194,6 +194,7 @@ othertools(){
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   flatpak install -y flathub com.obsproject.Studio
   flatpak install -y flathub org.mozilla.Thunderbird
+  flatpak install flathub ch.protonmail.protonmail-bridge -y
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
