@@ -187,14 +187,14 @@ othertools(){
    echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
   sudo apt update && agi signal-desktop
   sni spotify # spotify
-  sni code --classic
   # i'm learning: use flatpak > snap for less-sandboxed applications. eg: git backups, and open links in correct browser
   flatpak install -y flathub md.obsidian.Obsidian
   flatpak install -y flathub us.zoom.Zoom # zoom not well maintained across package managers, weird
   flatpak install -y flathub org.zotero.Zotero # zotero snap not as well maintained
   flatpak install -y flathub com.obsproject.Studio
   flatpak install -y flathub org.mozilla.Thunderbird
-  flatpak install flathub ch.protonmail.protonmail-bridge -y
+  flatpak install -y flathub ch.protonmail.protonmail-bridge 
+  flatpak install -y flathub com.visualstudio.code 
   # buggy text replacement
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
