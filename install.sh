@@ -195,7 +195,10 @@ othertools(){
   flatpak install -y flathub org.mozilla.Thunderbird
   flatpak install -y flathub ch.protonmail.protonmail-bridge 
   flatpak install -y flathub com.visualstudio.code 
-  # buggy text replacement
+  # flatpak is unofficial, and has general (also copilot) issues. Snap will not open browser links in correctly.
+  pushd $HOME/.files/clones && wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 && sudo dpkg -i ./code_*_amd64.deb 
+  popd
+  # buggy text replacement, to be removed
   sudo snap install espanso --classic --channel=latest/edge
   snap run espanso service register
   snap run espanso start
