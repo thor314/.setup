@@ -72,8 +72,8 @@ getgh_hub(){
 
 getpms(){
   # snap flatpak python rust go nodejs
-  sudo apt install snapd
-  sudo apt install flatpak
+  agi install snapd
+  agi install flatpak
   agi python3-dev python3-pip python3-setuptools
 
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -119,6 +119,7 @@ apttools(){
   agi pandoc # export text files to other text files
   agi graphviz # graphing tools, including dot
   agi git-filter-repo # holy shit a useful git tool for selectively filtering git history 
+  agi tesseract-ocr # Tesseract OCR engine deps (zotero)
   # GUIs
   agi gnome-tweaks # tweak destkop settings gui
   agi evince # pdf viewer
