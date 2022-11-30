@@ -179,6 +179,9 @@ othertools(){
   # https://github.com/bash-lsp/bash-language-server
   npm i -g bash-language-server
   agi shellcheck # https://www.shellcheck.net/
+  # tex langu server https://github.com/latex-lsp/texlab
+  cargo install texlab
+
   # CLI
   pushd $HOME/.setup/clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
   # GUI
