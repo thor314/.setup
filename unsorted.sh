@@ -12,6 +12,10 @@ agi protonvpn-cli && popd
 # agi -y fish # not up-to-date
 # go here: https://launchpad.net/~fish-shell/+archive/ubuntu/release-3/+packages
 # version will likely change. copied fish to .share/bin.
+agi fzf # fuzzy finder, also see fd, sd
 wget https://launchpad.net/\~fish-shell/+archive/ubuntu/release-3/+files/fish_3.5.1-1\~xenial_amd64.deb
 sudo dpkg -i fish_*.deb
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v5
+fisher install PatrickF1/fzf.fish
+
