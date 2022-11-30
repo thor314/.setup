@@ -10,3 +10,4 @@ agi protonvpn-cli && popd
 
 # bu dumps
 agi -y fish
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
