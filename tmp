@@ -1,0 +1,96 @@
+alias l='lsd --icon never'
+alias less='bat'
+alias ls='lsd --icon never'
+alias logout="pkill -u $(whoami)"
+
+alias man="batman" # du du du du du du du du
+
+alias pipi="pip install"
+alias python=python3
+alias pp=pythonplay
+alias priv=cd $HOME/.private
+alias pyp=pythonplay
+alias pyplay=pythonplay
+function pythonplay
+  cd $HOME/py/play
+  mkdir $1
+  cd $1
+  touch main.py
+  code main.py .
+end
+
+function rga
+  alias | rg -e "$argv"
+end
+alias ru=rustup
+function r
+  mv -f $1 "$HOME/.trash"
+end
+alias rm=r
+alias rmf="rm -rf" 
+alias rmr="rm -rf" 
+alias rra="rusty-rain -c arrow"
+alias rrb="rusty-rain -c bin"
+alias rrc="rusty-rain -c crab"
+alias rrcc="rusty-rain -c cards"
+alias rrd="rusty-rain -c dominosv"
+alias rrj="rusty-rain -c jap"
+alias rrm="rusty-rain -c moon"
+alias rrn="rusty-rain -c numbers"
+alias rrs="rusty-rain -c shapes"
+
+alias sr='fd --type file -x sd' # search replace in directory
+alias srp='fd --type file -x sd -p' # search replace in directory practice
+alias sc="maim -u -s | xclip -selection clipboard -target image/png"
+alias sni='snap install'
+alias snr='snap remove'
+alias sshb="ssh -t thor@$IP_LILBIRB"
+alias sshl="ssh -t thor@$IP_LILBIRB"
+alias sshs="ssh -t thor@$IP_STARCHY"
+alias sshh="ssh -t thor@$IP_HOME" 
+alias sshzb="ssh -t thor@$IP_LILBIRB ZDOTDIR=.zsh.d zsh"
+alias sshzl="ssh -t thor@$IP_LILBIRB ZDOTDIR=.zsh.d zsh"
+alias sshzs="ssh -t thor@$IP_STARCHY ZDOTDIR=.zsh.d zsh"
+alias sshzh="ssh -t thor@$IP_HOME ZDOTDIR=.zsh.d "
+alias sz='source ~/.zsh.d/.zshrc'
+alias sza='source ~/.zsh.d/alias.sh'
+alias spot=spt # spotify-tui
+
+alias top='btm' # kinky
+alias tw='rainbowstream' # terminal twitter client, kinda shit tho
+alias thes='moby' # thesaurus
+alias trashout="rm -rf $HOME/.trash/*"
+alias tor="flatpak run com.github.micahflee.torbrowser-launcher"
+alias tf="taplo fmt"
+
+alias v='hx'
+alias va='hx ~/.config/alacritty/alacritty.yml'
+alias vb='hx ~/.setup/unsorted.sh'
+alias vbi='hx ~/.setup/install.sh'
+alias vbu='hx ~/.setup/install.sh'
+alias vcg='hx ~/.cargo/cargo-generate.toml'
+alias vd='hx ~/.files/install.conf.yaml'
+alias vdp='hx ~/.files/private/install.conf.yaml'
+alias vds='hx ~/.files/root/install.conf.yaml'
+alias vdr='hx ~/.files/root/install.conf.yaml'
+alias veb="hx ~/.config/espanso/match/base.yml"
+alias vec="hx ~/.config/espanso/match/code.yml"
+alias vel="hx ~/.config/espanso/match/latex.yml"
+alias vem="hx ~/.config/espanso/match/mermaid.yml"
+alias veo="hx ~/.config/espanso/match/obsidian.yml"
+alias vet="hx ~/.config/espanso/match/thor.yml"
+alias vj='hx ~/.config/zellij/config.yaml'
+alias vo='hx ~/note/.obsidian.vimrc'
+# OMZ: vsc+ vscode
+alias vtmpl='hx ~/r/tmpl/base/Cargo.toml'
+alias vv='hx ~/.vimrc'
+alias vz='hx ~/.zsh.d/.zshrc'
+alias vza='hx ~/.zsh.d/alias.sh'
+
+alias zj=zellij
+alias zotero="flatpak run org.zotero.Zotero"
+
+alias :q=exit
+
+## Graveyard 
+#
