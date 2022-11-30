@@ -16,6 +16,13 @@ agi fzf # fuzzy finder, also see fd, sd
 wget https://launchpad.net/\~fish-shell/+archive/ubuntu/release-3/+files/fish_3.5.1-1\~xenial_amd64.deb
 sudo dpkg -i fish_*.deb
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-fisher install IlanCosman/tide@v5
-fisher install PatrickF1/fzf.fish
-
+fisher install IlanCosman/tide@v5 # prompt
+fisher install PatrickF1/fzf.fish # fzf tui
+fisher install jethrokuan/z # nice frecency cd
+fisher install jorgebucaran/nvm.fish # nvm
+nvm install latest
+fisher install meaningful-ooo/sponge # remove typos from history
+# set -U sponge_delay 5 # more than default:  2
+fisher install nickeb96/puffer-fish # use ... to go up 2 dirs
+fisher install Gazorby/fish-abbreviation-tips # alias reminders
+fisher install jhillyerd/plugin-git
