@@ -28,9 +28,12 @@ fisher install Gazorby/fish-abbreviation-tips # alias reminders
 fisher install jhillyerd/plugin-git # git aliases
 fisher install shoriminimoe/fish-extract # extraction convenience
 
-# Install misc less-used but maybe useful language servers 
+## Install misc less-used but maybe useful language servers 
 # https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers
-npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
 npm i -g yaml-language-server # https://www.npmjs.com/package/yaml-language-server
-
+npm i -g vscode-html-languageservice # https://github.com/microsoft/vscode-html-languageservice
+npm i -g typescript-language-server typescript # https://github.com/typescript-language-server/typescript-language-server
+npm i -g dockerfile-language-server-nodejs # https://github.com/rcjsuen/dockerfile-language-server-nodejs
+# Issues: not detected by helix, may be upstream issues *shrug*
+# npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
 
