@@ -35,12 +35,9 @@ npm i -g vscode-html-languageservice # https://github.com/microsoft/vscode-html-
 npm i -g typescript-language-server typescript # https://github.com/typescript-language-server/typescript-language-server
 npm i -g dockerfile-language-server-nodejs # https://github.com/rcjsuen/dockerfile-language-server-nodejs
 npm i -g vscode-langservers-extracted # vscode's HTML/JSON/CSS:  https://github.com/hrsh7th/vscode-langservers-extracted
-# Lean
+# https://leanprover-community.github.io/install/debian.html
 wget -q https://raw.githubusercontent.com/leanprover-community/mathlib-tools/master/scripts/install_debian.sh && bash install_debian.sh ; rm -f install_debian.sh && source ~/.profile
-npm install -g lean-language-server
-npm install -g lean-language-server
-npm install -g lean-language-server
-
-# Issues: not detected by helix, may be upstream issues *shrug*
+npm i -g lean-language-server
+# Issues:  solc not detected by helix, may be upstream issues *shrug*
 # npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
 
