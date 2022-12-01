@@ -27,3 +27,10 @@ fisher install nickeb96/puffer-fish # use ... to go up 2 dirs
 fisher install Gazorby/fish-abbreviation-tips # alias reminders
 fisher install jhillyerd/plugin-git # git aliases
 fisher install shoriminimoe/fish-extract # extraction convenience
+
+# Install misc less-used but maybe useful language servers 
+# https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers
+npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
+npm i -g yaml-language-server # https://www.npmjs.com/package/yaml-language-server
+
+
