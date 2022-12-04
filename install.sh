@@ -164,10 +164,10 @@ cargotools(){
   pushd $HOME/.setup/clones && git clone https://github.com/helix-editor/helix && cd helix
   cargo install --path helix-term && popd
   pushd $HOME/.setup/clones && wget https://github.com/artempyanykh/marksman/releases/download/2022-10-30/marksman-linux
-  mv marksman* marksman && chmod +x marksman && mv marksman $HOME/.local/bin
+  mv marksman* marksman && chmod +x marksman && mv marksman $HOME/.local/bin # markdown
+  rustup component add rust-analyzer # 1.64 onwards
+  
   # may be deprecated soon when RA bin gets included in cargo
-  # pushd clones && curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-  # chmod +x ~/.local/bin/rust-analyzer && popd
   ./$SH/bat.sh
   # GUI tools
   ./$SH/alacritty.sh
