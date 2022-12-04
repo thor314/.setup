@@ -166,7 +166,8 @@ cargotools(){
   pushd $HOME/.setup/clones && wget https://github.com/artempyanykh/marksman/releases/download/2022-10-30/marksman-linux
   mv marksman* marksman && chmod +x marksman && mv marksman $HOME/.local/bin # markdown
   rustup component add rust-analyzer # 1.64 onwards
-  
+  ln -s (rustup which rust-analyzer) $HOME/.cargo/bin/ # enable other programs (helix) to find RA
+
   # may be deprecated soon when RA bin gets included in cargo
   ./$SH/bat.sh
   # GUI tools
