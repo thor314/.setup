@@ -11,7 +11,10 @@ So we're building a script, with the following goal:
 This means that when I run `rustup update` or `apt upgrade` on one machine, I want my binaries to be updated everywhere.
 
 ## System
-System breaks down into several parts:
+System breaks down into three parts:
 - setup script: Do it once. Set up everything. Allow that the setup script might break.
-- package-managers - we want them installed on setup and never poked again
-- binaries - we want them synced across machines
+- update script: Managed by `dotbot`, the update script should keep my systems in sync, and be run every 10 minutes by cron.
+- binary storage: Package managers install binaries to different locations. Just keep a `.bin/{cargo,local,share,...}` location. Symlink to it from the other places binaries get installed.
+- eep a binary repository. Running a billion package manager commands can be obnoxious, easier to just keep all the binaries in one spot, clone that.
+  - Downfall of the above: binaries don't get updated by package managers.
+
