@@ -11,10 +11,10 @@ The second can be done well, with some design. Goal:
 This means that when I run `rustup update` or `apt upgrade` on one machine, I want my binaries to be updated everywhere.
 
 ## System
-System breaks down into three parts:
-- setup script: Do it once. Set up everything. Allow that the setup script might break.
+System breaks down into four parts:
+- setup (here): Do it once. Set up everything. Allow that the setup script might break. 
 - update script: Managed by `dotbot`, the update script should keep my systems in sync, and be run every 10 minutes by cron.
 - binary storage: Package managers install binaries to different locations. Just keep a `.bin/{cargo,local,share,...}` location. Symlink to it from the other places binaries get installed.
+- cron: manage the cron daemon to keep it all automatically glued together.
 
-Note on the binary storage move: I can version control binary updates and see if an updated binary bork'd at some point in the past.
 

@@ -4,7 +4,7 @@
 # Use this script:
 # source install.sh
 # then call functions one by one, fixing any bugs as they arise
-set -euo pipefall # https://wizardzines.com/comics/bash-errors/
+# set -euo pipefall # https://wizardzines.com/comics/bash-errors/
 
 alias agi='sudo apt install -y'
 alias ci='cargo install'
