@@ -15,7 +15,8 @@ alias pipi='pip3 install'
 # mkdir $SH/../debs
 
 start-setup(){
-  alias agi='sudo apt install -y -d /home/thor/bin/apt'
+  # UNFINISHED.
+  alias agi='sudo apt install -y'
   echo "setting up fish shell, getting cron, .files, binaries"
   echo "fetching system, this may take awhile...\n"
   git clone "git@github.com:thor314/cron.git"
@@ -26,7 +27,7 @@ start-setup(){
   agi python3-dev python3-pip python3-setuptools
   pip3 install dotbot
   dotbot -c install.conf.yaml && popd
-  agi  agi fish
+  agi fish
   export PATH="$PATH:$HOME/bin/"
   fish
 }

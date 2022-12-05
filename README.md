@@ -23,8 +23,8 @@ Start:
 git clone git@github.com:thor314/.setup.git 
 # get binaries, configuration files, and crons
 source .setup/install.sh
-start-setup # install fish, clone .files, cron, bins
-# WAIT AWHILE
-
+start-setup # install fish, clone .files, cron, bins, switch shell.
+# WAIT AWHILE 
+fish .setup/finish.fish
 ```
 
