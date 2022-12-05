@@ -17,4 +17,14 @@ System breaks down into four parts:
 - binary storage: Package managers install binaries to different locations. Just keep a `.bin/{cargo,local,share,...}` location. Symlink to it from the other places binaries get installed.
 - cron: manage the cron daemon to keep it all automatically glued together.
 
+## Setup
+Start: 
+```sh
+git clone git@github.com:thor314/.setup.git 
+# get binaries, configuration files, and crons
+source .setup/install.sh
+start-setup # install fish, clone .files, cron, bins
+# WAIT AWHILE
+
+```
 
