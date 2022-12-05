@@ -21,10 +21,10 @@ System breaks down into four parts:
 Start: 
 ```sh
 git clone git@github.com:thor314/.setup.git 
-# get binaries, configuration files, and crons
+# get binaries, configuration files, and crons.
 source .setup/install.sh
 start-setup # install fish, clone .files, cron, bins, switch shell.
-# WAIT AWHILE 
+# WAIT AWHILE. 
 fish .setup/finish.fish
 ```
 
