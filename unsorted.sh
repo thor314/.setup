@@ -9,7 +9,7 @@ sudo dpkg -i protonvpn-stable-release_1.0.1-1_all.deb
 agi protonvpn-cli && popd
 
 # bu dumps
-# agi -y fish # not up-to-date
+# agi -y fish #  NONONO not up-to-date will break 
 # go here: https://launchpad.net/~fish-shell/+archive/ubuntu/release-3/+packages
 # version will likely change. copied fish to .share/bin.
 agi fzf # fuzzy finder, also see fd, sd
