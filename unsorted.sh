@@ -43,3 +43,5 @@ wget -q https://raw.githubusercontent.com/leanprover-community/mathlib-tools/mas
 npm i -g lean-language-server
 # Issues:  solc not detected by helix, may be upstream issues *shrug*, not my monkeys
 # npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
+
+flatpak install flathub com.github.eneshecan.WhatsAppForLinux
