@@ -353,6 +353,8 @@ unsort(){
   fisher install jhillyerd/plugin-git # git aliases
   fisher install shoriminimoe/fish-extract # extraction convenience
 
+  pip install jupyter --upgrade
+
   ## Install misc less-used but maybe useful language servers 
   # https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers
   npm i -g yaml-language-server # https://www.npmjs.com/package/yaml-language-server
