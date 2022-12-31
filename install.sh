@@ -367,4 +367,9 @@ unsort(){
   npm i -g lean-language-server
   # Issues:  solc not detected by helix, may be upstream issues *shrug*, not my monkeys
   # npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
+  
+  # nbterm is an experimental terminal-based jupyter notebook.
+  pip install nbterm
+  sudo ln -s /usr/bin/python3 /usr/bin/python # necessary for nbterm to find python binary
 }
+
