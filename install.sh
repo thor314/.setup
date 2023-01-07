@@ -371,5 +371,11 @@ unsort(){
   # nbterm is an experimental terminal-based jupyter notebook.
   pip install nbterm
   sudo ln -s /usr/bin/python3 /usr/bin/python # necessary for nbterm to find python binary
+  # Quick install binaries, don't compile them. 2023-01-07 exp.
+  # https://github.com/cargo-bins/cargo-quickinstall 
+  cargo install cargo-quickinstall
+  # Alternative git client, built for ergonomics
+  # https://github.com/Byron/gitoxide
+  cargo quickinstall gitoxide
 }
 
