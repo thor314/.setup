@@ -48,4 +48,4 @@ flatpak install flathub com.github.eneshecan.WhatsAppForLinux
 agi python3-neovim
 flatpak install -y flathub io.neovim.nvim
 python3 -m pip install --upgrade pynvim
-#alternative: flatpak install flathub io.neovim.nvim
+# shouldn't have to install, but noting: https://nvchad.com/quickstart/install#pre-requisites
