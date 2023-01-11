@@ -46,4 +46,5 @@ npm i -g lean-language-server
 
 flatpak install flathub com.github.eneshecan.WhatsAppForLinux
 sudo apt -y install neovim python3-neovim
+python3 -m pip install --upgrade pynvim
 #alternative: flatpak install flathub io.neovim.nvim
