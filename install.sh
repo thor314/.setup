@@ -377,5 +377,7 @@ unsort(){
   # Alternative git client, built for ergonomics
   # https://github.com/Byron/gitoxide
   cargo quickinstall gitoxide
+  # necessary for fish fzf plugin
+  sudo ln -s /usr/bin/fdfind /usr/bin/fd
 }
 
