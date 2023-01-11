@@ -45,6 +45,7 @@ npm i -g lean-language-server
 # npm i -g solc # https://docs.soliditylang.org/en/latest/installing-solidity.html
 
 flatpak install flathub com.github.eneshecan.WhatsAppForLinux
-sudo apt -y install neovim python3-neovim
+agi python3-neovim
+flatpak install -y flathub io.neovim.nvim
 python3 -m pip install --upgrade pynvim
 #alternative: flatpak install flathub io.neovim.nvim
