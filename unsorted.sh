@@ -51,3 +51,11 @@ sudo flatpak install flathub io.neovim.nvim -y
 python3 -m pip install --upgrade pynvim
 # shouldn't have to install, but noting: https://nvchad.com/quickstart/install#pre-requisites
 rm -rf /home/thor/.local/share/nvim
+
+# Install nvim. Flatpak and Snap break with bugs, apt is 2 versions behind, so use AppImage.
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+sudo mv squashfs-root / # Optional: exposing nvim globally.
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
