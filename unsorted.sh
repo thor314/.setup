@@ -50,3 +50,4 @@ agi python3-neovim
 sudo flatpak install flathub io.neovim.nvim -y
 python3 -m pip install --upgrade pynvim
 # shouldn't have to install, but noting: https://nvchad.com/quickstart/install#pre-requisites
+rm -rf /home/thor/.local/share/nvim
