@@ -57,5 +57,5 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
 ./squashfs-root/AppRun --version
-sudo mv squashfs-root / # Optional: exposing nvim globally.
-sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+mv squashfs-root "$HOME/.setup/clones/nvim-appimage-squashfs-root"
+sudo ln -s "$HOME/.setup/clones/nvim-appimage-squashfs-root/AppRun" /usr/bin/nvim
