@@ -59,3 +59,4 @@ chmod u+x nvim.appimage
 ./squashfs-root/AppRun --version
 mv squashfs-root "$HOME/.setup/clones/nvim-appimage-squashfs-root"
 sudo ln -s "$HOME/.setup/clones/nvim-appimage-squashfs-root/AppRun" /usr/bin/nvim
+curl -sLf https://spacevim.org/install.sh | bash
