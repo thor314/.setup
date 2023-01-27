@@ -65,3 +65,4 @@ python3 -m pip install semgrep # https://semgrep.dev/orgs/-/setup/local
 sudo apt install sagemath sagemath-doc sagemath-jupyter
 # airplay mirroring for ipad to linux
 agi uxplay
+sudo apt -y install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-libav
