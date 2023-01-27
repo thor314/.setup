@@ -61,3 +61,5 @@ mv squashfs-root "$HOME/.setup/clones/nvim-appimage-squashfs-root"
 sudo ln -s "$HOME/.setup/clones/nvim-appimage-squashfs-root/AppRun" /usr/bin/nvim
 curl -sLf https://spacevim.org/install.sh | bash
 python3 -m pip install semgrep # https://semgrep.dev/orgs/-/setup/local
+# sagemath. May take awhile, whole package is about 3GB.
+sudo apt install sagemath sagemath-doc sagemath-jupyter
