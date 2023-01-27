@@ -63,3 +63,5 @@ curl -sLf https://spacevim.org/install.sh | bash
 python3 -m pip install semgrep # https://semgrep.dev/orgs/-/setup/local
 # sagemath. May take awhile, whole package is about 3GB.
 sudo apt install sagemath sagemath-doc sagemath-jupyter
+# airplay mirroring for ipad to linux
+agi uxplay
