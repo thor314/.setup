@@ -66,3 +66,6 @@ sudo apt install sagemath sagemath-doc sagemath-jupyter
 # airplay mirroring for ipad to linux
 agi uxplay
 sudo apt -y install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-libav
+cargo install --locked trunk
+cargo install --locked trunk && cargo install --locked wasm-bindgen-cli
+rustup target add wasm32-unknown-unknown
