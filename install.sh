@@ -381,3 +381,6 @@ unsort(){
   sudo ln -s /usr/bin/fdfind /usr/bin/fd
 }
 
+# a fast npm https://pnpm.io/installation
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
