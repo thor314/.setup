@@ -8,6 +8,7 @@ cargo install bottom --locked # top replacements
 cargo install --git https://github.com/bvaisvil/zenith.git
 cargo install difftastic # diff w/ precargo installsion
 cargo install pipe-rename # file renamer tool
+sudo apt -y install libssl-dev # cgen dep
 cargo install cargo-generate
 cargo install rusty-rain
 cargo install taplo-cli --locked # toml formatter
