@@ -20,22 +20,14 @@ PATH=$PATH:"/home/thor/bin/cargo:/home/thor/bin/local:/home/thor/bin/npm:/home/t
 ./09-fonts.sh
 ./10-cli-common.sh
 ./11-cli-py.sh
+./111-cli-sage.sh
 ./12-cli-rs.sh # todo unmet dependencies
 ./121-bat.sh
+./13-cli-node.sh
 #./18-cli-window-manager.sh
 #./181-leftwm.sh
 #./182-picom.sh
 #./183-rofi.sh
 ./19-cli-experimental.sh
 ./20-gui-common.sh
-./21-gui-uncommon.sh
-./29-gui-experimental.sh
-
-
-# set up cronscripts in /var/spool
-echo "calling crontab -e, copy and manually paste the following into it"
-cat $HOME/.setup/crontab
-read -p "Copy and press enter to continue"
-crontab -e
-echo "did you forget to include a newline at the end of the crontab?"
 

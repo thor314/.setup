@@ -3,6 +3,8 @@
 sudo apt install -y gnome-tweaks # tweak destkop settings gui
 sudo apt install -y vlc # simple playback
 sudo apt install -y evince # secondary pdf viewer, after Zotero
+echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
+read -p "press enter to continue"
 
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
