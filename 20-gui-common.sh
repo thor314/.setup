@@ -3,6 +3,7 @@
 sudo apt install -y gnome-tweaks # tweak destkop settings gui
 sudo apt install -y vlc # simple playback
 sudo apt install -y evince # secondary pdf viewer, after Zotero
+sudo apt install -y telegram-desktop
 echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
 read -p "press enter to continue"
 
@@ -21,7 +22,6 @@ flatpak install -y flathub org.mozilla.firefox
 flatpak install -y flathub ch.protonmail.protonmail-bridge 
 flatpak install -y flathub org.signal.Signal
 flatpak install -y flathub com.discordapp.Discord
-flatpak install -y flathub org.telegram.desktop
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
 
