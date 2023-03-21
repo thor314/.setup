@@ -1,6 +1,11 @@
 #!/bin/bash
 
 # set up cronscripts in /var/spool
+echo -e "\n\nMake your cron key:"
+ssh-keygen -t ed25519 -C thorck@pm.me -f $HOME/.ssh/id_ed25519_cron
+ssh-add -k /home/thor/.ssh/id_ed25519_cron
+gh ssh-key add $HOME/.ssh/id_ed25519_cron.pub
+
 echo "calling crontab -e, copy and manually paste the following into it"
 cat $HOME/cron/crontab
 
