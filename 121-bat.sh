@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt install -y shfmt # dependency, minify scripts
 cargo install --locked bat # better than cat and less
 pushd $HOME/.setup/clones
 hub clone https://github.com/eth-p/bat-extras # bat(diff|grep|man|pipe|watch)

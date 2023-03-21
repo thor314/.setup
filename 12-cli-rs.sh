@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Rust CLI tools
+cargo install ripgrep # better grep
+cargo install zellij
+cargo install du-dust # replace du, df
+cargo install bottom --locked # top replacements
+cargo install --git https://github.com/bvaisvil/zenith.git
+cargo install difftastic # diff w/ precargo installsion
+cargo install pipe-rename # file renamer tool
+cargo install cargo-generate
+cargo install rusty-rain
+cargo install taplo-cli --locked # toml formatter
+cargo install lsd
+cargo install sd # search replace, nicer than sed
+cargo install fd-find # find replacement
+sudo ln -s /usr/bin/fdfind /usr/bin/fd # necessary for fish fzf plugin
+cargo install texlab # tex langu server https://github.com/latex-lsp/texlab
+# Quick install binaries, don't compile them https://github.com/cargo-bins/cargo-            quickinstall 
+cargo install cargo-quickinstall
+cargo quickinstall gitoxide # git modifiers https://github.com/Byron/gitoxide
