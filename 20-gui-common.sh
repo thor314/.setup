@@ -3,7 +3,8 @@
 sudo apt install -y gnome-tweaks # tweak destkop settings gui
 sudo apt install -y vlc # simple playback
 sudo apt install -y evince # secondary pdf viewer, after Zotero
-sudo apt install -y telegram-desktop # don't use flatpak
+sudo apt install -y telegram-desktop # don't use flatpak (maybe?)
+flatpak install -y flathub org.telegram.desktop # apt isn't up to date
 echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
 read -p "press enter to continue"
 
