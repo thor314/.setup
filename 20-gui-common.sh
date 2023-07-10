@@ -25,6 +25,7 @@ flatpak install -y flathub org.signal.Signal
 flatpak install -y flathub com.discordapp.Discord
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
+flatpak install -y flathub org.gimp.GIMP
 
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
