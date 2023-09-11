@@ -16,7 +16,7 @@ rustup target add wasm32-unknown-unknown
 pushd $HOME/.setup/clones
 echo -e "\n\nInstall Golang: https://go.dev/dl/"
 echo "Assuming extract to Downloads..."
-# read -p "press enter to continue"
+read -p "press enter to continue"
 if [[ -d /usr/local/go ]] ; then 
   sudo rm -rf /usr/local/go 
 fi
