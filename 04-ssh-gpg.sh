@@ -4,7 +4,7 @@
 # https://github.com/microsoft/Git-Credential-Manager-Core#linux-install-instructions
 
 echo -e "\n\nGo get the deb file: "
-ECHO -e "\nhttps://github.com/git-ecosystem/git-credential-manager"
+echo -e "\nhttps://github.com/git-ecosystem/git-credential-manager"
 read -p "Install with Eddy, then press enter to continue"
 git-credential-manager configure
 
