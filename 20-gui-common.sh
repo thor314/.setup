@@ -24,11 +24,6 @@ flatpak install -y flathub com.discordapp.Discord
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
 flatpak install -y flathub org.gimp.GIMP
 
-echo -e "\n\n close all firefox windows"
-read -p "press enter to continue"
-sudo apt uninstall firefox
-flatpak install -y flathub org.mozilla.firefox
-
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
 echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
