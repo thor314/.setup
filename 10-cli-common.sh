@@ -9,6 +9,7 @@ sudo apt install -y graphviz # graphing tools, including dot
 sudo apt install -y git-filter-repo # useful git tool for selectively filtering git history 
 sudo apt install -y shellcheck # https://www.shellcheck.net/ a shell script linter
 sudo apt install -y fzf # fuzzy finder, also see fd, sd
+sudo apt install -y feh # set background image
 
 # simulate pressing buttons, very useful script utility. dependency of tdrop.
 sudo apt install -y xdotool
