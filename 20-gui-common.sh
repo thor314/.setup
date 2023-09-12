@@ -8,9 +8,6 @@ sudo apt install -y evince # secondary pdf viewer, after Zotero
 # sudo apt install -y telegram-desktop # apt falls out of date a lot
 flatpak install -y flathub org.telegram.desktop # apt isn't up to date
 
-echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
-read -p "press enter to continue"
-
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 flatpak install -y flathub org.chromium.Chromium
@@ -32,10 +29,11 @@ flatpak install -y flathub org.gimp.GIMP
 
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
-pushd $HOME/.setup/clones && wget https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 && sudo dpkg -i ./code_*_amd64.deb && popd
+echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
+read -p "press enter to continue"
 
-# generally prefer flatpak over snap, seems better maintained, more native in general.
-# text-expander no flatpak
-snap install espanso --classic --channel=latest/edge # text expander
-snap run espanso service register
-snap run espanso start
+wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
+sudo apt install ./espanso-debian-x11-amd64.deb -y
+espanso service register
+espanso start
+
