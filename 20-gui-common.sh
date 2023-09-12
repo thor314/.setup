@@ -1,5 +1,6 @@
 #!/bin/bash
 # Commonly used GUIs
+
 sudo apt install -y gnome-tweaks # tweak destkop settings gui
 sudo apt install -y vlc # simple playback
 sudo apt install -y evince # secondary pdf viewer, after Zotero
@@ -17,15 +18,16 @@ flatpak install -y flathub us.zoom.Zoom
 flatpak install -y flathub org.zotero.Zotero 
 flatpak install -y flathub com.github.eneshecan.WhatsAppForLinux
 flatpak install -y flathub com.obsproject.Studio
-sudo apt uninstall firefox
-flatpak install -y flathub org.mozilla.Thunderbird
-flatpak install -y flathub org.mozilla.firefox
-flatpak install -y flathub ch.protonmail.protonmail-bridge 
 flatpak install -y flathub org.signal.Signal
 flatpak install -y flathub com.discordapp.Discord
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
 flatpak install -y flathub org.gimp.GIMP
+
+echo -e "\n\n close all firefox windows"
+read -p "press enter to continue"
+sudo apt uninstall firefox
+flatpak install -y flathub org.mozilla.firefox
 
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
@@ -37,4 +39,8 @@ sudo apt install ./espanso-debian-x11-amd64.deb -y
 espanso service register
 espanso start
 rm espanso-*
+
+# Dead
+# flatpak install -y flathub org.mozilla.Thunderbird
+# flatpak install -y flathub ch.protonmail.protonmail-bridge 
 
