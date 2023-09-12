@@ -4,15 +4,19 @@ echo -e "setting up home directory...\n"
 pushd $HOME
 rm -r Documents Desktop Music Pictures Public Templates Videos
 
-hub clone .files --recursive 
-hub clone blog --recursive
-hub clone cryptography
+gh repo clone .private
+gh repo clone .files
+PATH="$PATH:$HOME/.local/bin"
+
+cd $HOME/.files && dotbot -c install.conf.yaml && cd
+cd $HOME/.private && dotbot -c install.conf.yaml && cd
+
+
+gh repo clone blog 
+# hub clone cryptography
 mkdir img
-hub clone backgrounds img/backgrounds
-hub clone profile img/profile
-hub clone keep
-hub clone note
-# hub clone uncloak
-hub clone cron 
-hub clone .private 
+gh repo clone backgrounds img/backgrounds
+gh repo clone profile img/profile
+gh repo clone keep
+gh repo clone cron 
 popd
