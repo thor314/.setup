@@ -36,4 +36,5 @@ wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-
 sudo apt install ./espanso-debian-x11-amd64.deb -y
 espanso service register
 espanso start
+rm espanso-*
 
