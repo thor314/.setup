@@ -23,8 +23,5 @@ echo -e "\n\nmy ip address is:"
 echo -e "$(hostname -I | cut --delimiter=' ' -f1)\n\n"
 echo "get shared key from another machine. From my other trusted machine, enter:"
 echo "gpg --export-secret-keys thor-shared | ssh thor@IPADDRESS gpg --import"
-echo "if that worked, I should be able to open my secrets file. Add my ip to env vars".
-read -p "press enter to continue"
-vi $HOME/.private/secrets.gpg
 
 

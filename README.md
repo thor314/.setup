@@ -13,6 +13,9 @@ sudo apt install -y hub
 gh auth login
 
 git clone git@github.com:thor314/.setup.git
+
+git config --global user.name "Thor Kampefner"
+git config --global user.email "thorck@pm.me"
 ```
 
  
