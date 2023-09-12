@@ -19,3 +19,9 @@ cargo install texlab # tex langu server https://github.com/latex-lsp/texlab
 # Quick install binaries, don't compile them https://github.com/cargo-bins/cargo-            quickinstall 
 cargo install cargo-quickinstall
 cargo quickinstall gitoxide # git modifiers https://github.com/Byron/gitoxide
+
+sudo apt install bat -y
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
+
