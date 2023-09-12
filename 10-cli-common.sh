@@ -14,6 +14,7 @@ sudo apt install -y feh # set background image
 # simulate pressing buttons, very useful script utility. dependency of tdrop.
 sudo apt install -y xdotool
 # appear & disappear windows
+sudo apt install gawk -y # tdrop dependency
 pushd $HOME/.setup/clones && hub clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && popd
 # linter for dotenv files https://github.com/dotenv-linter/dotenv-linter
 curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
