@@ -1,6 +1,4 @@
 # Setting up a new machine:
-Aiming for maximal simplicity here. Can install all at once with `install.sh`, or one at a time. 
-
 Before installing on a new machine, need to sync an ssh key with github. Paste the following:
 ```sh
 echo -e "\n\nGenerate an ssh key:"
@@ -18,4 +16,5 @@ git config --global user.name "Thor Kampefner"
 git config --global user.email "thorck@pm.me"
 ```
 
- 
+Then work through the parts. Not fun, but makes the most reproducible and easiest to debug builds. 
+
