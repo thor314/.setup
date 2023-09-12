@@ -20,7 +20,12 @@ read -p "press enter to continue"
 if [[ -d /usr/local/go ]] ; then 
   sudo rm -rf /usr/local/go 
 fi
-sudo mv $HOME/Downloads/go /usr/local/go
+if [[ -f $HOME/go ]] ; then 
+  sudo mv $HOME/go /usr/local/go
+fi
+if [[ -f $HOME/Downloads/go ]] ; then 
+  sudo mv $HOME/Downloads/go /usr/local/go
+fi
 export PATH=$PATH:/usr/local/go/bin && go version && echo Go installed
 popd
 
