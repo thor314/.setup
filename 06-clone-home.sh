@@ -17,8 +17,8 @@ mkdir img && cd img
 gh repo clone backgrounds 
 gh repo clone profile 
 cd 
-gh repo clone keep
-gh repo clone cron 
+gh repo clone .keep
+gh repo clone .cron 
 
 mkdir r && cd r
 gh repo clone tmpl
