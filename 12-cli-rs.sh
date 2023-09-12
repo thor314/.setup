@@ -12,7 +12,6 @@ sudo apt -y install libssl-dev # cgen dep
 cargo install cargo-generate
 cargo install rusty-rain
 cargo install taplo-cli --locked # toml formatter
-cargo install lsd
 cargo install sd # search replace, nicer than sed
 cargo install fd-find # find replacement
 sudo ln -s /usr/bin/fdfind /usr/bin/fd # necessary for fish fzf plugin
