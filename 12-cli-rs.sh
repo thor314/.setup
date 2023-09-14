@@ -1,6 +1,6 @@
 #!/bin/bash
-
 # Rust CLI tools
+
 cargo install ripgrep # better grep
 cargo install zellij
 cargo install du-dust # replace du, df
@@ -20,8 +20,9 @@ cargo install texlab # tex langu server https://github.com/latex-lsp/texlab
 cargo install cargo-quickinstall
 cargo quickinstall gitoxide # git modifiers https://github.com/Byron/gitoxide
 
+# option to install more bat tools
+# https://github.com/eth-p/bat-extras/blob/master/README.md#installation
 sudo apt install bat -y
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
-
 
