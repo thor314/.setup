@@ -27,7 +27,7 @@ flatpak install -y flathub org.gimp.GIMP
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
 echo -e "\n\n install edge: https://www.microsoft.com/en-us/edge/download"
-echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
+# echo -e "\n\n install 1Password: https://1password.com/downloads/linux/"
 read -p "press enter to continue"
 
 wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
