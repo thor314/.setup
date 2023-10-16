@@ -4,6 +4,7 @@ sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-
 pushd $HOME/.setup/clones
 
 # from https://github.com/alacritty/alacritty/blob/master/INSTALL.md#debianubuntu
+source $HOME/.cargo/env
 git clone git@github.com:alacritty/alacritty.git
 cd alacritty
 cargo build --release

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Rust CLI tools
 
+source $HOME/.cargo/env
 cargo install ripgrep # better grep
 cargo install zellij
 cargo install du-dust # replace du, df
