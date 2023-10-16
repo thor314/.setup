@@ -6,6 +6,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier'
 # revert: gsettings reset org.gnome.desktop.input-sources xkb-options
 # or mannualy: Open Gnome Tweaks to map Capslock to Ctrl
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
 
 echo -e "\n\nGenerate an ssh key:"
 ssh-keygen -t ed25519 -C thorck@pm.me
