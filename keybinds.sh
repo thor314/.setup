@@ -5,28 +5,7 @@
 # gsettings set org.gnome.shell.extensions.pop-shell float-window '[]'
 
 # Register space for plenty of custom keybindings
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings
-"['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/',
-'/org/gnome/settings-daemon/plugins.media-keys/custom-keybindings/custom4/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/',
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', 
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom15/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom16/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom17/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom18/'
-'/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom19/'
-]"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins.media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom15/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom16/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom17/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom18/' '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom19/' ]"
 
 # tdrop hotkeys
 # Alacritty (Super+G)
