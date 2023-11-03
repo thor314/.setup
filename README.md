@@ -27,3 +27,6 @@ Then work through the parts. Not fun, but makes the most reproducible and easies
 
 Todo: 
 - fix keyboard ctrl caps
+
+2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
+issues, will have to test next install.
