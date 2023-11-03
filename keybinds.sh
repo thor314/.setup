@@ -74,21 +74,6 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ name 'Spotify'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify --class=spotify flatpak run com.spotify.Client' 
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ binding 'Super+Shift+S'
 
-# non-tdrop hotkeys
-# Open Firefox with multiple tabs (Super+B)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ name 'Firefox Tabs'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox 
---new-tab "https://www.coingecko.com/en/portfolio" --new-tab "https://eprint.iacr.org/days/7" --new-tab "https://feedly.com/" --new-tab "https://news.ycombinator.com/front" --new-tab "https://tweetdeck.twitter.com/" --new-tab "https://zkmesh.substack.com/" --new-tab "https://github.com/thor314"'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ binding 'Super+B'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ name 'Firefox Pinned'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://linear.app/th0r/my-issues/assigned" 
--new-tab "https://claude.ai/chats" 
--new-tab "https://chat.openai.com/" 
--new-tab "https://assistant.google.com/tasks?otzr=1" 
--new-tab "https://calendar.google.com/calendar/u/0/r/week" \
--new-tab "https://mail.proton.me/u/0/inbox"'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ binding 'Super+Shift+P'
 
 # Normal hotkeys
 # Alacritty (Super+T)
@@ -116,4 +101,22 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ name 'Switch to US'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ command 'setxkbmap us -option ctrl:nocaps'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ binding 'Shift+Menu'
 
+# Misc commands
+## Open Firefox with multiple tabs (Super+B)
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ name 'Firefox Tabs'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox --new-tab "https://www.coingecko.com/en/portfolio" --new-tab "https://eprint.iacr.org/days/7" --new-tab "https://feedly.com/" --new-tab "https://news.ycombinator.com/front" --new-tab "https://tweetdeck.twitter.com/" --new-tab "https://zkmesh.substack.com/" --new-tab "https://github.com/thor314"'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ binding 'Super+B'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ name 'Firefox Pinned'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://linear.app/th0r/my-issues/assigned" 
+-new-tab "https://claude.ai/chats" 
+-new-tab "https://chat.openai.com/" 
+-new-tab "https://assistant.google.com/tasks?otzr=1" 
+-new-tab "https://calendar.google.com/calendar/u/0/r/week" \
+-new-tab "https://mail.proton.me/u/0/inbox"'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ binding 'Super+Shift+P'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ name 'Spotify Play/Pause Toggle'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ binding 'Super+ '
 
