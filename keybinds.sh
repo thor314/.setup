@@ -4,6 +4,9 @@
 # Unbind conflicting hotkeys (unsure how), needs debugging
 # gsettings set org.gnome.shell.extensions.pop-shell float-window '[]'
 
+# 2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
+# issues, will have to test next install.
+
 MEDIA_KEYS=org.gnome.settings-daemon.plugins.media-keys.custom-keybinding
 BIND_DIR=/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
 
@@ -74,14 +77,15 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ binding 'Super+Shift+S'
 # non-tdrop hotkeys
 # Open Firefox with multiple tabs (Super+B)
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ name 'Firefox Tabs'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox --new-tab "https://www.coingecko.com/en/portfolio" --new-tab "https://eprint.iacr.org/days/7" --new-tab "https://feedly.com/" --new-tab "https://news.ycombinator.com/front" --new-tab "https://tweetdeck.twitter.com/" --new-tab "https://zkmesh.substack.com/" --new-tab "https://github.com/thor314"'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox 
+--new-tab "https://www.coingecko.com/en/portfolio" --new-tab "https://eprint.iacr.org/days/7" --new-tab "https://feedly.com/" --new-tab "https://news.ycombinator.com/front" --new-tab "https://tweetdeck.twitter.com/" --new-tab "https://zkmesh.substack.com/" --new-tab "https://github.com/thor314"'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ binding 'Super+B'
 
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ name 'Firefox Pinned'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://linear.app/th0r/my-issues/assigned" \
--new-tab "https://claude.ai/chats" \
--new-tab "https://chat.openai.com/" \
--new-tab "https://assistant.google.com/tasks?otzr=1" \
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://linear.app/th0r/my-issues/assigned" 
+-new-tab "https://claude.ai/chats" 
+-new-tab "https://chat.openai.com/" 
+-new-tab "https://assistant.google.com/tasks?otzr=1" 
 -new-tab "https://calendar.google.com/calendar/u/0/r/week" \
 -new-tab "https://mail.proton.me/u/0/inbox"'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ binding 'Super+Shift+P'
