@@ -9,3 +9,11 @@ sudo apt install build-essential pkg-config libssl-dev clang git-lfs -y
 git clone https://github.com/penumbra-zone/penumbra clones
 #cd clones/penumbra && git fetch && git checkout v0.63.1
 #cargo build --release --bin pcli
+#cp target/release/pcli ~/.cargo/bin
+## New:
+# cargo run --quiet --release --bin pcli init soft-kms generate
+## Import:
+# cargo run --quiet --release --bin pcli init soft-kms import-phrase
+# generate the address for a numbered account between 0 and 4 billion
+# cargo run --quiet --release --bin pcli view address 0
+
