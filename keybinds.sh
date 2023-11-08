@@ -108,8 +108,7 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox --new-tab "htt
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ binding 'Super+B'
 
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ name 'Firefox Pinned'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://linear.app/th0r/my-issues/assigned" 
--new-tab "https://claude.ai/chats" 
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://claude.ai/chats" 
 -new-tab "https://chat.openai.com/" 
 -new-tab "https://assistant.google.com/tasks?otzr=1" 
 -new-tab "https://calendar.google.com/calendar/u/0/r/week" \
