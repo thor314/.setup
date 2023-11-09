@@ -139,3 +139,6 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ name 'Spotify Play/Pause Toggle
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ binding 'Super+ '
 
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ name 'Toggle bluetooth'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ command 'bash $HOME/.files/scripts/bt.sh'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ binding 'Super+Shift+B'
