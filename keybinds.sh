@@ -142,3 +142,11 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ binding 'Super+ '
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ name 'Toggle bluetooth'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ command 'bash $HOME/.files/scripts/bt.sh'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ binding 'Super+Shift+B'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ name 'skip forward'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ binding 'Super+.'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ name 'skip backward'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ binding 'Super+,'
