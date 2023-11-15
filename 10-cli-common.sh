@@ -37,4 +37,4 @@ sudo usermod -aG docker ${USER}
 
 # zola
 git clone https://github.com/barnumbirr/zola-debian $HOME/.setup/clones
-sh $HOME/.setup/clones/build.sh
+sudo sh $HOME/.setup/clones/build.sh
