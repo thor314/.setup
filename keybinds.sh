@@ -91,7 +91,8 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom6/ binding 'Super+E'
 
 # Spotify (Super+Shift+S)
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ name 'Spotify' 
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify --class=spotify flatpak run com.spotify.Client' 
+#gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify --class=spotify flatpak run com.spotify.Client' 
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify spotify'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ binding 'Super+Shift+S'
 
 

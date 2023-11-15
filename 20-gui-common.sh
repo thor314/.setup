@@ -13,7 +13,7 @@ flatpak install -y flathub org.telegram.desktop
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 flatpak install -y flathub org.chromium.Chromium
-flatpak install -y flathub com.spotify.Client
+#flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub md.obsidian.Obsidian
 flatpak install -y flathub us.zoom.Zoom  
 flatpak install -y flathub org.zotero.Zotero 
