@@ -151,3 +151,11 @@ gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ binding 'Super+.'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ name 'skip backward'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
 gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ binding 'Super+,'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ name 'skip forward 20 seconds'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ command 'playerctl position 20+'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ binding 'Super+a'
+
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ name 'skip backward 20 seconds'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ command 'playerctl position 20-'
+gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ binding 'Super+Shift+A'
