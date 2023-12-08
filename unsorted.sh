@@ -17,3 +17,4 @@ git clone https://github.com/penumbra-zone/penumbra clones
 # generate the address for a numbered account between 0 and 4 billion
 # cargo run --quiet --release --bin pcli view address 0
 
+sudo apt install webp # webp cli tools
