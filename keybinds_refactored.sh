@@ -1,5 +1,6 @@
 #!/bin/bash
 # Keybind settings for Gnome setup
+echo "WARNING: don't try to run this in fish shell, run me in bash" && sleep .2
 
 # Constants
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
@@ -21,10 +22,11 @@ set_custom_keybind() {
 create_slots() {
     echo "creating $1 slots..." && sleep .3
     keybindings=()
-    for i in $(seq 0 $1 ); do
+    for i in $(seq 1 $1 ); do
         keybindings+=("${KEYBIND_DIR}/custom${i}/")
     done
-    gsettings set "${MEDIA_KEYS}" custom-keybindings "$(printf "'%s', " "${keybindings[@]}" | sed 's/, $//')"
+    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "$(printf "'%s', " "${keybindings[@]}" | sed 's/, $//')"
+    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "['${keybindings[@]}']"
     echo "done" 
 }
 
@@ -108,5 +110,5 @@ create_keybinds() {
 
 # TO TEST THIS SCRIPT:
 # comment out this line and test commands
-create_keybinds
+# create_keybinds
 
