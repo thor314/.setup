@@ -56,6 +56,7 @@ join_array() {
 # Function to generate a tdrop command with an option for Flatpak applications
 tdrop_() {
     local app_name=$1
+    local use_flatpak=$2
     local flatpak_name=$3
 
     if [ "$use_flatpak" = true ]; then
@@ -72,18 +73,20 @@ create_keybinds() {
     create_slots 30
 
     echo "creating keybinds..." && sleep .3
-    set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false alacritty)" "Super+G"
+    set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "Super+G"
     set_custom_keybind 1 "Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "Super+T"
     set_custom_keybind 2 "Signal" "$(tdrop_ signal true org.signal.Signal)" "Super+S"
     set_custom_keybind 3 "Discord" "$(tdrop_ discord true com.discordapp.Discord)" "Super+D"
     set_custom_keybind 4 "Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "Super+O"
     set_custom_keybind 5 "Firefox" "$(tdrop_ firefox false)" "Super+F"
+    # feeling finder doesn't play nice with tdrop, sad face
     set_custom_keybind 6 "Feeling Finder" "$(tdrop_ feelingfinder true codes.merritt.FeelingFinder)" "Super+E"
     set_custom_keybind 7 "Alacritty" "alacritty" "Super+t"
+    # zotero and code also do not play nice w tdrop
     set_custom_keybind 8 "Zotero" "flatpak run org.zotero.Zotero" "Super+Z"
     set_custom_keybind 9 "Code" "code" "Super+C"
     set_custom_keybind 10 "Switch to Dvorak" "setxkbmap dvorak -option ctrl:nocaps" "Menu"
-    # todo: maybe bug, i think i switched to flatpak
+    # todo: maybe bug, i think i switched spotify to flatpak
     set_custom_keybind 11 "Spotify" "$(tdrop_ spotify false)" "Super+Shift+S"
     set_custom_keybind 12 "Switch to US" "setxkbmap us -option ctrl:nocaps" "Shift+Menu"
 
@@ -106,3 +109,4 @@ create_keybinds() {
 # TO TEST THIS SCRIPT:
 # comment out this line and test commands
 create_keybinds
+
