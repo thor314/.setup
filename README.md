@@ -27,7 +27,7 @@ then: `git config --global user.email "$EMAIL"`
 Then work through the parts. Not fun, but makes the most reproducible and easiest to debug builds. 
 
 Todo: 
-- refactor the keybind script
+- test the refactored keybind script
 - maybe: do the gui installs first, so I can log into everything while installing all my binaries
 
 2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
