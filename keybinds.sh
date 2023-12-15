@@ -1,5 +1,7 @@
 #!/bin/bash
 # Keybind settings for Gnome setup
+# list the names of keys (not actually sure how to do this)
+# gsettings list-keys org.gnome.settings-daemon.plugins.media-keys
 
 # Constants
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
@@ -97,10 +99,10 @@ create_keybinds() {
     #set_custom_keybind 14 "Firefox Pinned" "firefox --new-tab 'https://claude.ai/chats' --new-tab 'https://chat.openai.com/' --new-tab 'https://assistant.google.com/tasks?otzr=1' --new-tab 'https://calendar.google.com/calendar/u/0/r/week' --new-tab 'https://mail.proton.me/u/0/inbox'" "<Super><Shift>P"
 
     SPOT_SEND="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
-    set_custom_keybind 15 "Spotify Play/Pause Toggle" "$SPOT_SEND /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" "<Super>Space"
+    set_custom_keybind 15 "Spotify Play/Pause Toggle" "$SPOT_SEND org.mpris.MediaPlayer2.Player.PlayPause" "<Super>space"
     set_custom_keybind 16 "Toggle Bluetooth" "bash $HOME/.files/scripts/bt.sh" "<Super><Shift>B"
-    set_custom_keybind 17 "Skip Forward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Next" "<Super>."
-    set_custom_keybind 18 "Skip Backward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Previous" "<Super>,"
+    set_custom_keybind 17 "Skip Forward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Next" "<Super>period"
+    set_custom_keybind 18 "Skip Backward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Previous" "<Super>comma"
     set_custom_keybind 19 "Skip Forward 20 Seconds" "playerctl position 20+" "<Super>A"
     set_custom_keybind 20 "Skip Backward 20 Seconds" "playerctl position 20-" "<Super><Shift>A"
     set_custom_keybind 21 "Suspend System" "systemctl suspend" "<Super>Pause"
