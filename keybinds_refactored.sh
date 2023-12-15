@@ -12,21 +12,21 @@ set_custom_keybind() {
     local name=$2
     local command=$3
     local binding=$4
-
-    gsettings set "${MEDIA_KEYS}:${KEYBIND_DIR}/custom${index}/" name "${name}"
-    gsettings set "${MEDIA_KEYS}:${KEYBIND_DIR}/custom${index}/" command "${command}"
-    gsettings set "${MEDIA_KEYS}:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
 }
 
 # Register space for custom keybindings, use first argument for number of slots to create
 create_slots() {
     echo "creating $1 slots..." && sleep .3
     keybindings=()
-    for i in $(seq 1 $1 ); do
+    for i in $(seq 0 $1 ); do
         keybindings+=("${KEYBIND_DIR}/custom${i}/")
     done
-    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "$(printf "'%s', " "${keybindings[@]}" | sed 's/, $//')"
-    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "['${keybindings[@]}']"
+    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
+    gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
+    #echo "\n" gsettings set "${MEDIA_KEYS}" custom-keybindings "['${keybindings[@]}']" "\n"
     echo "done" 
 }
 
@@ -110,5 +110,5 @@ create_keybinds() {
 
 # TO TEST THIS SCRIPT:
 # comment out this line and test commands
-# create_keybinds
+create_keybinds
 
