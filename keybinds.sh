@@ -1,165 +1,114 @@
 #!/bin/bash
-# keybind settings for Gnome
+# Keybind settings for Gnome setup
 
-# Unbind conflicting hotkeys (unsure how), needs debugging
-# gsettings set org.gnome.shell.extensions.pop-shell float-window '[]'
+# Constants
+MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
+KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
-# 2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
-# issues, will have to test next install.
+# Function to set a custom keybinding
+set_custom_keybind() {
+    local index=$1
+    local name=$2
+    local command=$3
+    local binding=$4
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
+}
 
-MEDIA_KEYS=org.gnome.settings-daemon.plugins.media-keys.custom-keybinding
-KEYBIND_DIR=/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings
+# Register space for custom keybindings, use first argument for number of slots to create
+create_slots() {
+    echo "creating $1 slots..." && sleep .3
+    keybindings=()
+    for i in $(seq 0 $1 ); do
+        keybindings+=("${KEYBIND_DIR}/custom${i}/")
+    done
+    echo gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
+    gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
+    #echo "\n" gsettings set "${MEDIA_KEYS}" custom-keybindings "['${keybindings[@]}']" "\n"
+    echo "done" 
+}
 
-# todo: do this but not shitty
-# Register space for plenty of custom keybindings
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', 
-  '/org/gnome/settings-daemon/plugins.media-keys/custom-keybindings/custom4/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom15/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom16/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom17/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom18/', 
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom19/' ]"
+# List of tabs for Firefox Tabs keybinding
+firefox_tabs=(
+    "https://www.coingecko.com/en/portfolio"
+    "https://eprint.iacr.org/days/7"
+    "https://feedly.com/"
+    "https://news.ycombinator.com/front"
+    "https://tweetdeck.twitter.com/"
+    "https://zkmesh.substack.com/"
+    "https://github.com/thor314"
+)
 
-# todo figure out a nice way to do this when I run the script next
-# kbnd() {
-#   if [ $# -ne 4 ]; then
-#     echo "Usage: set_custom_keybind <keybind_name> <name> <command> <binding>"
-#     return 1
-#   fi
+# List of tabs for Firefox Pinned keybinding
+firefox_pinned=(
+    "https://chat.openai.com/"
+    "https://calendar.google.com/calendar/u/0/r/week"
+    "https://mail.proton.me/u/0/inbox"
+)
+    # "https://claude.ai/chats"
+    # "https://assistant.google.com/tasks?otzr=1"
 
-#   local keybind_name=$1
-#   local name=$2
-#   local command=$3
-#   local binding=$4
-#   local MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
-#   local KEYBIND_DIR="custom-keybindings"
+# Function to join array elements into a string
+join_array() {
+    local IFS="$1"; shift; echo "$*";
+}
 
-#   gsettings set "$MEDIA_KEYS:$KEYBIND_DIR/$keybind_name/" name "$name"
-#   gsettings set "$MEDIA_KEYS:$KEYBIND_DIR/$keybind_name/" command "$command"
-#   gsettings set "$MEDIA_KEYS:$KEYBIND_DIR/$keybind_name/" binding "$binding"
-# }
+# Function to generate a tdrop command with an option for Flatpak applications
+tdrop_() {
+    local app_name=$1
+    local use_flatpak=$2
+    local flatpak_name=$3
 
-# tdrop hotkeys
-# Alacritty (Super+G)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom0/ name 'Alacritty tdrop'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom0/ command 'tdrop -ma -h 100% -w 50% alacritty'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom0/ binding 'Super+G'
-
-# Telegram (Super+T)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom1/ name 'Telegram'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom1/ command 'tdrop -ma -h 100% -w 50% -n telegram --class=telegram flatpak run org.telegram.desktop'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom1/ binding 'Super+T'
-
-# Signal (Super+S)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom2/ name 'Signal'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom2/ command 'tdrop -ma -h 100% -w 50% -n signal --class=signal flatpak run org.signal.Signal'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom2/ binding 'Super+S'
-
-# Discord (Super+D)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom3/ name 'Discord'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom3/ command 'tdrop -ma -h 100% -w 50% -n discord --class=discord flatpak run com.discordapp.Discord'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom3/ binding 'Super+D'
-
-# Obsidian (Super+O)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom4/ name 'Obsidian'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom4/ command 'tdrop -ma -h 100% -w 50% -n obsidian --class=obsidian flatpak run md.obsidian.Obsidian'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom4/ binding 'Super+O'
-
-# Firefox (Super+F)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom5/ name 'Firefox'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom5/ command 'tdrop -ma -h 100% -w 50% firefox'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom5/ binding 'Super+F'
-
-# Feeling Finder (Super+E)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom6/ name 'Feeling Finder'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom6/ command 'tdrop -ma -h 100% -w 50% -n feelingfinder --class=feelingfinder flatpak run codes.merritt.FeelingFinder'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom6/ binding 'Super+E'
-
-# Spotify (Super+Shift+S)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ name 'Spotify' 
-#gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify --class=spotify flatpak run com.spotify.Client' 
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ command 'tdrop -ma -h 100% -w 50% -n spotify spotify'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom11/ binding 'Super+Shift+S'
+    if [ "$use_flatpak" = true ]; then
+        echo "tdrop -ma -h 100% -w 50% -n ${app_name} --class=${app_name} flatpak run ${flatpak_name}"
+    else
+        echo "tdrop -ma -h 100% -w 50% -n ${app_name} ${app_name}"
+    fi
+}
 
 
-# Normal hotkeys
-# Alacritty (Super+T)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom7/ name 'Alacritty'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom7/ command 'alacritty'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom7/ binding 'Super+t'
+# Define custom keybindings. 
+create_keybinds() {
+    # create enough slots for more ad-hoc keybinds in the future
+    create_slots 30
 
-# Zotero (Super+Z)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom8/ name 'Zotero'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom8/ command 'flatpak run org.zotero.Zotero'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom8/ binding 'Super+Z'
+    echo "creating keybinds..." && sleep .3
+    set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>G"
+    set_custom_keybind 1 "Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super>T"
+    set_custom_keybind 2 "Signal" "$(tdrop_ signal true org.signal.Signal)" "<Super>S"
+    set_custom_keybind 3 "Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>D"
+    set_custom_keybind 4 "Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>O"
+    set_custom_keybind 5 "Firefox" "$(tdrop_ firefox false)" "<Super>F"
+    # feeling finder doesn't play nice with tdrop, sad face
+    set_custom_keybind 6 "Feeling Finder" "$(tdrop_ feelingfinder true codes.merritt.FeelingFinder)" "<Super>E"
+    set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
+    # zotero and code also do not play nice w tdrop
+    set_custom_keybind 8 "Zotero" "flatpak run org.zotero.Zotero" "<Super>Z"
+    set_custom_keybind 9 "Code" "code" "<Super>C"
+    set_custom_keybind 10 "Switch to Dvorak" "setxkbmap dvorak -option ctrl:nocaps" "Menu"
+    # todo: maybe bug, i think i switched spotify to flatpak
+    set_custom_keybind 11 "Spotify" "$(tdrop_ spotify false)" "<Super><Shift>S"
+    set_custom_keybind 12 "Switch to US" "setxkbmap us -option ctrl:nocaps" "<Shift>Menu"
 
-# Code (Super+C)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom9/ name 'Code'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom9/ command 'code'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom9/ binding 'Super+C'
+    set_custom_keybind 13 "Firefox Tabs" "firefox $(join_array ' --new-tab ' "${firefox_tabs[@]}")" "<Super>B"
+    set_custom_keybind 14 "Firefox Pinned" "firefox $(join_array ' --new-tab ' "${firefox_pinned[@]}")" "<Super><Shift>P"
+    #set_custom_keybind 13 "Firefox Tabs" "firefox --new-tab 'https://www.coingecko.com/en/portfolio' --new-tab 'https://eprint.iacr.org/days/7' --new-tab 'https://feedly.com/' --new-tab 'https://news.ycombinator.com/front' --new-tab 'https://tweetdeck.twitter.com/' --new-tab 'https://zkmesh.substack.com/' --new-tab 'https://github.com/thor314'" "<Super>B"
+    #set_custom_keybind 14 "Firefox Pinned" "firefox --new-tab 'https://claude.ai/chats' --new-tab 'https://chat.openai.com/' --new-tab 'https://assistant.google.com/tasks?otzr=1' --new-tab 'https://calendar.google.com/calendar/u/0/r/week' --new-tab 'https://mail.proton.me/u/0/inbox'" "<Super><Shift>P"
 
+    SPOT_SEND="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
+    set_custom_keybind 15 "Spotify Play/Pause Toggle" "$SPOT_SEND /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause" "<Super>Space"
+    set_custom_keybind 16 "Toggle Bluetooth" "bash $HOME/.files/scripts/bt.sh" "<Super><Shift>B"
+    set_custom_keybind 17 "Skip Forward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Next" "<Super>."
+    set_custom_keybind 18 "Skip Backward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Previous" "<Super>,"
+    set_custom_keybind 19 "Skip Forward 20 Seconds" "playerctl position 20+" "<Super>A"
+    set_custom_keybind 20 "Skip Backward 20 Seconds" "playerctl position 20-" "<Super><Shift>A"
+    set_custom_keybind 21 "Suspend System" "systemctl suspend" "<Super>Pause"
 
-# Keyboard layout switching
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom12/ name 'Switch to Dvorak'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom12/ command 'setxkbmap dvorak -option ctrl:nocaps'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom12/ binding 'Menu'
+    echo "done" 
+}
 
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ name 'Switch to US'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ command 'setxkbmap us -option ctrl:nocaps'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom13/ binding 'Shift+Menu'
+# TO TEST THIS SCRIPT:
+# comment out this line and test commands
+create_keybinds
 
-# Misc commands
-## Open Firefox with multiple tabs (Super+B)
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ name 'Firefox Tabs'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ command 'firefox --new-tab "https://www.coingecko.com/en/portfolio" --new-tab "https://eprint.iacr.org/days/7" --new-tab "https://feedly.com/" --new-tab "https://news.ycombinator.com/front" --new-tab "https://tweetdeck.twitter.com/" --new-tab "https://zkmesh.substack.com/" --new-tab "https://github.com/thor314"'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom10/ binding 'Super+B'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ name 'Firefox Pinned'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ command 'firefox -new-tab "https://claude.ai/chats" 
--new-tab "https://chat.openai.com/" 
--new-tab "https://assistant.google.com/tasks?otzr=1" 
--new-tab "https://calendar.google.com/calendar/u/0/r/week" \
--new-tab "https://mail.proton.me/u/0/inbox"'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom14/ binding 'Super+Shift+P'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ name 'Spotify Play/Pause Toggle'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom15/ binding 'Super+ '
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ name 'Toggle bluetooth'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ command 'bash $HOME/.files/scripts/bt.sh'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom16/ binding 'Super+Shift+B'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ name 'skip forward'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom17/ binding 'Super+.'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ name 'skip backward'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ command 'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom18/ binding 'Super+,'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ name 'skip forward 20 seconds'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ command 'playerctl position 20+'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom19/ binding 'Super+a'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ name 'skip backward 20 seconds'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ command 'playerctl position 20-'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom20/ binding 'Super+Shift+A'
-
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom21/ name 'Suspend system'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom21/ command 'systemctl suspend'
-gsettings set $MEDIA_KEYS:$KEYBIND_DIR/custom21/ binding 'Super+break'
