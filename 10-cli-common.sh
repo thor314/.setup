@@ -24,14 +24,20 @@ sudo apt install -y uxplay
 sudo apt -y install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-tools
 
 # docker
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o docker.gpg
-sudo mv docker.gpg /etc/apt/trusted.gpg.d/
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt update
-sudo apt install -y docker-ce
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
+echo "Adding Docker’s official GPG key..."
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "Setting up the Docker repository..."
+echo \
+"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "Updating package database..."
+# Install Docker CE
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+echo "Verifying Docker installation..."
 sudo systemctl status docker
-sudo systemctl start docker
+echo "Docker installation completed."
 # run docker as thor, not sudo:
 sudo usermod -aG docker ${USER}
 
