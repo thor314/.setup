@@ -77,7 +77,7 @@ create_keybinds() {
 
     echo "creating keybinds..." && sleep .3
     set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>G"
-    set_custom_keybind 1 "Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super>T"
+    set_custom_keybind 1 "Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>T"
     set_custom_keybind 2 "Signal" "$(tdrop_ signal true org.signal.Signal)" "<Super>S"
     set_custom_keybind 3 "Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>D"
     set_custom_keybind 4 "Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>O"
