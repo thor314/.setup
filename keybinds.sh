@@ -84,7 +84,7 @@ create_keybinds() {
     set_custom_keybind 2 "tdrop Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>D"
     set_custom_keybind 3 "tdrop Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>O"
     set_custom_keybind 4 "tdrop Firefox" "$(tdrop_ firefox false)" "<Super>F"
-    set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram false)" "<super><shift>T"
+    set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>T"
     set_custom_keybind 6 "Spotify" "$(tdrop_ spotify false)" "<Super><Shift>S"
     set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
     # the following do not play nice w tdrop
