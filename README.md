@@ -32,3 +32,9 @@ Todo:
 
 2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
 issues, will have to test next install.
+
+## Pending recurring issue
+If issues with system keyboard persist:
+```
+sudo localectl set-x11-keymap dvorak
+```
