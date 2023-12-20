@@ -13,7 +13,7 @@ flatpak install -y flathub org.telegram.desktop
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 flatpak install -y flathub org.chromium.Chromium
-#flatpak install -y flathub com.spotify.Client
+#flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, see below
 flatpak install -y flathub md.obsidian.Obsidian
 flatpak install -y flathub us.zoom.Zoom  
 flatpak install -y flathub org.zotero.Zotero 
@@ -31,13 +31,14 @@ echo -e "\n\n install edge: https://www.microsoft.com/en-us/edge/download"
 echo -e "\n\n install android messages: https://github.com/chrisknepper/android-messages-desktop/releases/tag/v3.1.0" 
 read -p "press enter to continue"
 
+# espanso, a customizeable and platform agnostic text expander
 wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
 sudo apt install ./espanso-debian-x11-amd64.deb -y
 espanso service register
 espanso start
 rm espanso-*
 
-# Dead
+# Dead, or rather, I don't use these services anymore
 # flatpak install -y flathub org.mozilla.Thunderbird
 # flatpak install -y flathub ch.protonmail.protonmail-bridge 
 
