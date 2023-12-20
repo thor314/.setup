@@ -16,14 +16,19 @@ list_existing_keybinds() {
     local index=0
     for binding in $bindings; do
         binding=$(echo $binding | tr -d '[],' | tr -d "'")
-        echo $binding
+        # echo $binding
         if [ ! -z "$binding" ]; then
             local key=$(gsettings get "${binding}" binding)
-            existing_keybindings["$key"]="${KEYBIND_DIR}/custom${index}"
-            ((index++))
+            local key=$(gsettings get "${MEDIA_KEYS}.custom_keybinding:$binding" name)
+            # /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/
+            # name
+
+            echo $key
+    #         existing_keybindings["$key"]="${KEYBIND_DIR}/custom${index}"
+    #         ((index++))
         fi
     done
-    echo "${existing_bindings[@]}"
+    # echo "${existing_bindings[@]}"
 }
 
 EXISTING_KEYBINDS="$(list_existing_keybinds)"
