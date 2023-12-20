@@ -5,11 +5,6 @@ sudo apt install -y gnome-tweaks # tweak destkop settings gui
 sudo apt install -y vlc # simple playback
 sudo apt install -y evince # secondary pdf viewer, after Zotero
 
-# telegram fuckery
-# apt isn't up to date
-# sudo apt install -y telegram-desktop # apt falls out of date a lot
-flatpak install -y flathub org.telegram.desktop 
-
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 flatpak install -y flathub org.chromium.Chromium
@@ -24,6 +19,7 @@ flatpak install -y flathub com.discordapp.Discord
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
 flatpak install -y flathub org.gimp.GIMP
+
 
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
@@ -50,3 +46,16 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt-get update && sudo apt-get install spotify-client
 # also install playerctl for cli tools
 sudo apt install -y playerctl
+
+# telegram is annoying. There are 4 installation options.
+# - apt: does not seem regularly updated
+# - flatpak: On desktop, the flatpak has GPU-accel rendering issues
+# - snap: I forget what was up with the snap, besides that it was a snap.
+# - the following download script: WE'LL SEE! 2023-12-20
+
+wget -O telegram.tar.xz https://telegram.org/dl/desktop/linux
+tar -xf telegram.tar.xz 
+mv Telegram/Telegram ~/.local/bin
+mv Telegram/Updater ~/.local/bin/Telegram-Updater
+rm -r Telegram
+echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues)"
