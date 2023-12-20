@@ -2,66 +2,12 @@
 # Keybind settings for Gnome setup
 # list the names of keys (not actually sure how to do this)
 # gsettings list-keys org.gnome.settings-daemon.plugins.media-keys
-# TODO: this will not look to see if the new keybind conflicts with an old keybind and remove the old keybind
+# This script does not remove system default keybinds. To remove those, replace the keybind manually.
 
 # Constants
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
-# Function to list existing custom keybindings with indices
-# declare -A existing_keybindings
-list_existing_keybinds() {
-    existing_keybindings=()
-    local bindings=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
-    local index=0
-    for binding in $bindings; do
-        binding=$(echo $binding | tr -d '[],' | tr -d "'")
-        # echo $binding
-        if [ ! -z "$binding" ]; then
-            local key=$(gsettings get "${binding}" binding)
-            local key=$(gsettings get "${MEDIA_KEYS}.custom_keybinding:$binding" name)
-            # /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/
-            # name
-
-            echo $key
-    #         existing_keybindings["$key"]="${KEYBIND_DIR}/custom${index}"
-    #         ((index++))
-        fi
-    done
-    # echo "${existing_bindings[@]}"
-}
-
-EXISTING_KEYBINDS="$(list_existing_keybinds)"
-echo $EXISTING_KEYBINDS
-# EXISTING_KEYBINDS=list_existing_keybinds
-# echo $EXISTING_KEYBINDS
-
-# Function to list existing custom keybindings
-list_existing_keybinds() {
-    local bindings=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
-    local existing_bindings=()
-    for binding in $bindings; do
-        # Remove brackets and commas from the string
-        binding=$(echo $binding | tr -d '[],' | tr -d "'")
-        if [ ! -z "$binding" ]; then
-            local name=$(gsettings get "${binding}" name)
-            local command=$(gsettings get "${binding}" command)
-            local key=$(gsettings get "${binding}" binding)
-            existing_bindings+=("$key:$command")
-        fi
-    done
-    echo "${existing_bindings[@]}"
-}
-
-# EXISTING_KEYBINDS="$(list_existing_keybinds)"
-# echo $EXISTING_KEYBINDS
-
-# Was running into reproducibility issues, so added this to reset the keybinds directory first.
-reset_keybindings() {
-    echo "Resetting all custom keybindings..."
-    gsettings set "${MEDIA_KEYS}" custom-keybindings "[]"
-    echo "All custom keybindings have been reset."
-}
 
 # Function to set a custom keybinding
 set_custom_keybind() {
