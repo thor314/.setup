@@ -58,4 +58,4 @@ tar -xf telegram.tar.xz
 mv Telegram/Telegram ~/.local/bin
 mv Telegram/Updater ~/.local/bin/Telegram-Updater
 rm -r Telegram
-echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues)"
+echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues), and all notifications"
