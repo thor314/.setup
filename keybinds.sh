@@ -41,14 +41,14 @@ morning_tabs=(
     #"https://zkmesh.substack.com/"
 )
 
-morning_tabs=(
+news_tabs=(
     "https://feedly.com/"
     "https://news.ycombinator.com/front"
     "https://zkmesh.substack.com/"
 )
 
 # List of tabs for Firefox Pinned keybinding
-firefox_pinned=(
+pinned_tabs=(
     "https://chat.openai.com/"
     "https://calendar.google.com/calendar/u/0/r/week"
     "https://mail.proton.me/u/0/inbox"
@@ -93,8 +93,8 @@ create_keybinds() {
     set_custom_keybind 12 "Code" "code" "<Super>C"
 
     set_custom_keybind 20 "Firefox Morning Tabs" "firefox $(join_array ' --new-tab ' "${morning_tabs[@]}")" "<Super><Shift>F"
-    set_custom_keybind 21 "Firefox Pinned"       "firefox $(join_array ' --new-tab ' "${firefox_pinned[@]}")" "<Super><Shift>P"
-    set_custom_keybind 22 "Firefox News"         "firefox $(join_array ' --new-tab ' "${firefox_news[@]}")" "<Super><Shift>N"
+    set_custom_keybind 21 "Firefox Pinned Tabs"  "firefox $(join_array ' --new-tab ' "${pinned_tabs[@]}")" "<Super><Shift>P"
+    set_custom_keybind 22 "Firefox News Tabs"    "firefox $(join_array ' --new-tab ' "${news_tabs[@]}")" "<Super><Shift>N"
 
     SPOT_SEND="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
     set_custom_keybind 30 "Switch to Dvorak" "setxkbmap dvorak -option ctrl:nocaps" "Menu"
