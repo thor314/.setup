@@ -8,7 +8,7 @@ sudo apt install -y evince # secondary pdf viewer, after Zotero
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 flatpak install -y flathub org.chromium.Chromium
-#flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, see below
+#flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, +tdrop issues, see below
 flatpak install -y flathub md.obsidian.Obsidian
 flatpak install -y flathub us.zoom.Zoom  
 flatpak install -y flathub org.zotero.Zotero 
@@ -47,15 +47,16 @@ sudo apt-get update && sudo apt-get install spotify-client
 # also install playerctl for cli tools
 sudo apt install -y playerctl
 
-# telegram is annoying. There are 4 installation options.
+## Telegram installation notes
+# Telegram is annoying. There are 4 installation options.
 # - apt: does not seem regularly updated
-# - flatpak: On desktop, the flatpak has GPU-accel rendering issues
 # - snap: I forget what was up with the snap, besides that it was a snap.
+# - flatpak: On desktop, the flatpak has GPU-accel rendering issues. I could probably fix this with the GUI setting.
 # - the following download script: WE'LL SEE! 2023-12-20
-
-wget -O telegram.tar.xz https://telegram.org/dl/desktop/linux
-tar -xf telegram.tar.xz 
-mv Telegram/Telegram ~/.local/bin/telegram
-mv Telegram/Updater ~/.local/bin/telegram-updater
-rm -r Telegram
+#wget -O telegram.tar.xz https://telegram.org/dl/desktop/linux
+# tar -xf telegram.tar.xz 
+# mv Telegram/Telegram ~/.local/bin/telegram
+# mv Telegram/Updater ~/.local/bin/telegram-updater
+# rm -r Telegram
+flatpak install -y flathub org.telegram.Telegram
 echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues), and all notifications"

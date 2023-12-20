@@ -7,12 +7,20 @@
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
+# Was running into reproducibility issues, so added this to reset the keybinds directory first.
+reset_keybindings() {
+    echo "Resetting all custom keybindings..."
+    gsettings set "${MEDIA_KEYS}" custom-keybindings "[]"
+    echo "All custom keybindings have been reset."
+}
+
 # Function to set a custom keybinding
 set_custom_keybind() {
     local index=$1
     local name=$2
     local command=$3
     local binding=$4
+    echo "binding $name to $binding..."
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
@@ -20,7 +28,7 @@ set_custom_keybind() {
 
 # Register space for custom keybindings, use first argument for number of slots to create
 create_slots() {
-    echo "creating $1 slots..." && sleep .3
+    echo "creating $1 slots..." && sleep .2
     keybindings=()
     for i in $(seq 0 $1 ); do
         keybindings+=("${KEYBIND_DIR}/custom${i}/")
@@ -75,6 +83,7 @@ tdrop_() {
 
 # Define custom keybindings. 
 create_keybinds() {
+    reset_keybindings
     # create enough slots for more ad-hoc keybinds in the future
     create_slots 40
 
