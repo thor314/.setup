@@ -8,6 +8,49 @@
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
+# Function to list existing custom keybindings with indices
+# declare -A existing_keybindings
+list_existing_keybinds() {
+    existing_keybindings=()
+    local bindings=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
+    local index=0
+    for binding in $bindings; do
+        binding=$(echo $binding | tr -d '[],' | tr -d "'")
+        echo $binding
+        if [ ! -z "$binding" ]; then
+            local key=$(gsettings get "${binding}" binding)
+            existing_keybindings["$key"]="${KEYBIND_DIR}/custom${index}"
+            ((index++))
+        fi
+    done
+    echo "${existing_bindings[@]}"
+}
+
+EXISTING_KEYBINDS="$(list_existing_keybinds)"
+echo $EXISTING_KEYBINDS
+# EXISTING_KEYBINDS=list_existing_keybinds
+# echo $EXISTING_KEYBINDS
+
+# Function to list existing custom keybindings
+list_existing_keybinds() {
+    local bindings=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
+    local existing_bindings=()
+    for binding in $bindings; do
+        # Remove brackets and commas from the string
+        binding=$(echo $binding | tr -d '[],' | tr -d "'")
+        if [ ! -z "$binding" ]; then
+            local name=$(gsettings get "${binding}" name)
+            local command=$(gsettings get "${binding}" command)
+            local key=$(gsettings get "${binding}" binding)
+            existing_bindings+=("$key:$command")
+        fi
+    done
+    echo "${existing_bindings[@]}"
+}
+
+# EXISTING_KEYBINDS="$(list_existing_keybinds)"
+# echo $EXISTING_KEYBINDS
+
 # Was running into reproducibility issues, so added this to reset the keybinds directory first.
 reset_keybindings() {
     echo "Resetting all custom keybindings..."
@@ -21,6 +64,16 @@ set_custom_keybind() {
     local name=$2
     local command=$3
     local binding=$4
+
+    # Remove existing keybinding if it conflicts
+    if [[ -n "${existing_keybindings[$binding]}" ]]; then
+        local conflicting_binding="${existing_keybindings[$binding]}"
+        echo "Conflict detected for $name, $binding. Removing existing keybinding..."
+        gsettings reset "${conflicting_binding}/name"
+        gsettings reset "${conflicting_binding}/command"
+        gsettings reset "${conflicting_binding}/binding"
+    fi
+
     echo "binding $name to $binding..."
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
@@ -87,6 +140,7 @@ create_keybinds() {
     reset_keybindings
     # create enough slots for more ad-hoc keybinds in the future
     create_slots 40
+    list_existing_keybinds  # Update list of existing keybindings
 
     echo "creating keybinds..." && sleep .3
     set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>G"
@@ -123,5 +177,6 @@ create_keybinds() {
 
 # TO TEST THIS SCRIPT:
 # comment out this line and test commands
-create_keybinds
+# create_keybinds
+
 
