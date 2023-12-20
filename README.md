@@ -36,5 +36,7 @@ issues, will have to test next install.
 ## Pending recurring issue
 If issues with system keyboard persist:
 ```
+# localectl list-x11-keymap-variants # see list of keymap options
 sudo localectl set-x11-keymap dvorak
+sudo update-initramfs -u # update initial ramdisk to apply changes at boot time
 ```
