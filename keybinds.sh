@@ -8,7 +8,6 @@
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
-
 # Function to set a custom keybinding
 set_custom_keybind() {
     local index=$1
@@ -16,19 +15,76 @@ set_custom_keybind() {
     local command=$3
     local binding=$4
 
-    # Remove existing keybinding if it conflicts
-    if [[ -n "${existing_keybindings[$binding]}" ]]; then
-        local conflicting_binding="${existing_keybindings[$binding]}"
-        echo "Conflict detected for $name, $binding. Removing existing keybinding..."
-        gsettings reset "${conflicting_binding}/name"
-        gsettings reset "${conflicting_binding}/command"
-        gsettings reset "${conflicting_binding}/binding"
+    # TODO: removing system default keybindings seemed hard, so skip this for now
+    if ! is_existing_keybind "$binding"; then 
+        # remove the pre-existing keybind
+        remove_keybind $binding
     fi
 
     echo "binding $name to $binding..."
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
+}
+
+# if the keybind exists either in custom or on the system, return true
+CUSTOM_BINDINGS=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
+is_existing_custom_keybind() {
+    local binding=$1
+    local escaped_binding=$(printf '%s\n' "$binding" | sed 's/[]\/$*.^[]/\\&/g')  # Escape special characters for grep
+
+    # Iterate over each custom binding path
+    for path in ${CUSTOM_BINDINGS//,/ }; do
+        # Trim leading and trailing characters and get the actual binding
+        trimmed_path=$(echo $path | tr -d "'[],")
+        actual_binding=$(gsettings get "${MEDIA_KEYS}.custom-keybinding:${trimmed_path}" binding)
+
+        # Check if the actual binding matches the provided one
+        if [[ "$actual_binding" == *"$escaped_binding"* ]]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+is_existing_keybind() {
+    local binding=$1
+
+    # First, check custom keybindings
+    if is_existing_custom_keybind "$binding"; then
+        return 0
+    fi
+
+    # List of common schemas for default keybindings (you may need to adjust these)
+    local schemas=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
+
+    for schema in "${schemas[@]}"; do
+        # echo $(gsettings list-recursively "$schema" | awk '{print $3}')
+        echo $(gsettings list-recursively "$schema" )
+        # local keys=$(gsettings list-recursively "$schema" | awk '{print $3}')
+        for key in $keys; do
+            local key_binding=$(gsettings get "$schema" "$key")
+        #     if [[ "$key_binding" == *"$binding"* ]]; then
+        #         echo true
+        #         return 0
+        #     fi
+        done
+    done
+
+    echo false
+    return 1
+}
+
+# Example usage
+is_existing_keybind "<Super>D"
+# Example usage
+# is_existing_custom_keybind "<Super>D"
+
+# remove the pre-existing keybind
+remove_keybind() {
+  # TODO: maybe one day
+  local binding=$1
 }
 
 # Register space for custom keybindings, use first argument for number of slots to create
@@ -86,14 +142,13 @@ tdrop_() {
 }
 
 
-# Define custom keybindings. 
+# Define custom keybindings
+# Go go go
 create_keybinds() {
     reset_keybindings
-    # create enough slots for more ad-hoc keybinds in the future
     create_slots 40
-    list_existing_keybinds  # Update list of existing keybindings
-
     echo "creating keybinds..." && sleep .3
+
     set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>G"
     set_custom_keybind 1 "tdrop Signal" "$(tdrop_ signal true org.signal.Signal)" "<Super>S"
     set_custom_keybind 2 "tdrop Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>D"
@@ -102,6 +157,7 @@ create_keybinds() {
     set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>T"
     set_custom_keybind 6 "Spotify" "$(tdrop_ spotify false)" "<Super><Shift>S"
     set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
+
     # the following do not play nice w tdrop
     set_custom_keybind 10 "Feeling Finder" "flatpak run true codes.merritt.FeelingFinder" "<Super>E"
     set_custom_keybind 11 "Zotero" "flatpak run org.zotero.Zotero" "<Super>Z"
