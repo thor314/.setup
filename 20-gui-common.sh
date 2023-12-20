@@ -55,7 +55,7 @@ sudo apt install -y playerctl
 
 wget -O telegram.tar.xz https://telegram.org/dl/desktop/linux
 tar -xf telegram.tar.xz 
-mv Telegram/Telegram ~/.local/bin
-mv Telegram/Updater ~/.local/bin/Telegram-Updater
+mv Telegram/Telegram ~/.local/bin/telegram
+mv Telegram/Updater ~/.local/bin/telegram-updater
 rm -r Telegram
 echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues), and all notifications"
