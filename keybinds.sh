@@ -57,7 +57,7 @@ get_key_bindings() {
         local key_binding=$(gsettings get "$schema" "$key_name")
 
         # Skip keys with empty bindings
-        if [[ "$key_binding" != "@as []" ]]; then
+        if [[ "$key_binding" != "@as []" ]] && [[ "$key_binding" != "['']"]] && [["$key_name" != custom-keybindings ]]; then
             key_bindings["$key_name"]="$key_binding"
         fi
     done
@@ -70,9 +70,11 @@ SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.m
 for schema in "${SCHEMAS[@]}"; do
     eval "$(get_key_bindings "$schema")"
     for key in "${!key_bindings[@]}"; do
+        echo "adding pair $key, ${key_bindings["$key"]}"
         ALL_KEY_BINDINGS["$key"]="${key_bindings["$key"]}"
     done
 done
+# echo "${ALL_KEY_BINDINGS[@]}"
 
 is_existing_keybind() {
     local binding=$1
@@ -85,7 +87,7 @@ is_existing_keybind() {
 
     for key in "${!ALL_KEY_BINDINGS[@]}"; do
         local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | grep -oP "<[^>]+>")
-        echo "${ALL_KEY_BINDINGS[$key]}", $key, $key_binding
+        # echo "${ALL_KEY_BINDINGS[$key]}", $key, $key_binding
         # echo does $key, $key_binding match $binding
         if [[ "$key_binding" == "$binding" ]]; then
             echo true
