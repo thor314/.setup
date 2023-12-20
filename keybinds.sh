@@ -57,18 +57,19 @@ is_existing_keybind() {
     fi
 
     # List of common schemas for default keybindings (you may need to adjust these)
-    local schemas=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
+    local SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
 
-    for schema in "${schemas[@]}"; do
-        # echo $(gsettings list-recursively "$schema" | awk '{print $3}')
-        echo $(gsettings list-recursively "$schema" )
-        # local keys=$(gsettings list-recursively "$schema" | awk '{print $3}')
-        for key in $keys; do
-            local key_binding=$(gsettings get "$schema" "$key")
-        #     if [[ "$key_binding" == *"$binding"* ]]; then
-        #         echo true
-        #         return 0
-        #     fi
+    for schema in "${SCHEMAS[@]}"; do
+        local key_names=$(gsettings list-recursively "$schema" | grep -oP '^\S+\s+\S+' | awk '{print $2}')
+
+        for key_name in $key_names; do
+            local key_binding=$(gsettings get "$schema" "$key_name")
+            echo checking if "$key_binding" matches "$binding" with "$key_name"
+            if [[ "$key_binding" == "$binding" ]]; then
+                echo "$key_binding" matches  "$binding"
+                echo true
+                return 0
+            fi
         done
     done
 
@@ -77,7 +78,7 @@ is_existing_keybind() {
 }
 
 # Example usage
-is_existing_keybind "<Super>D"
+is_existing_keybind "<Super>m"
 # Example usage
 # is_existing_custom_keybind "<Super>D"
 
@@ -149,35 +150,35 @@ create_keybinds() {
     create_slots 40
     echo "creating keybinds..." && sleep .3
 
-    set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>G"
-    set_custom_keybind 1 "tdrop Signal" "$(tdrop_ signal true org.signal.Signal)" "<Super>S"
-    set_custom_keybind 2 "tdrop Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>D"
-    set_custom_keybind 3 "tdrop Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>O"
-    set_custom_keybind 4 "tdrop Firefox" "$(tdrop_ firefox false)" "<Super>F"
-    set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>T"
-    set_custom_keybind 6 "Spotify" "$(tdrop_ spotify false)" "<Super><Shift>S"
+    set_custom_keybind 0 "Alacritty tdrop" "$(tdrop_ alacritty false)" "<Super>g"
+    set_custom_keybind 1 "tdrop Signal" "$(tdrop_ signal true org.signal.Signal)" "<Super>s"
+    set_custom_keybind 2 "tdrop Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>d"
+    set_custom_keybind 3 "tdrop Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>o"
+    set_custom_keybind 4 "tdrop Firefox" "$(tdrop_ firefox false)" "<Super>f"
+    set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>t"
+    set_custom_keybind 6 "Spotify" "$(tdrop_ spotify false)" "<Super><Shift>s"
     set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
 
     # the following do not play nice w tdrop
-    set_custom_keybind 10 "Feeling Finder" "flatpak run true codes.merritt.FeelingFinder" "<Super>E"
-    set_custom_keybind 11 "Zotero" "flatpak run org.zotero.Zotero" "<Super>Z"
-    set_custom_keybind 12 "Code" "code" "<Super>C"
+    set_custom_keybind 10 "Feeling Finder" "flatpak run true codes.merritt.FeelingFinder" "<Super>e"
+    set_custom_keybind 11 "Zotero" "flatpak run org.zotero.Zotero" "<Super>z"
+    set_custom_keybind 12 "Code" "code" "<Super>c"
 
-    set_custom_keybind 20 "Firefox Morning Tabs" "firefox $(join_array ' --new-tab ' "${morning_tabs[@]}")" "<Super><Shift>F"
-    set_custom_keybind 21 "Firefox Pinned Tabs"  "firefox $(join_array ' --new-tab ' "${pinned_tabs[@]}")" "<Super><Shift>P"
-    set_custom_keybind 22 "Firefox News Tabs"    "firefox $(join_array ' --new-tab ' "${news_tabs[@]}")" "<Super><Shift>N"
+    set_custom_keybind 20 "Firefox Morning Tabs" "firefox $(join_array ' --new-tab ' "${morning_tabs[@]}")" "<Super><Shift>f"
+    set_custom_keybind 21 "Firefox Pinned Tabs"  "firefox $(join_array ' --new-tab ' "${pinned_tabs[@]}")" "<Super><Shift>p"
+    set_custom_keybind 22 "Firefox News Tabs"    "firefox $(join_array ' --new-tab ' "${news_tabs[@]}")" "<Super><Shift>n"
 
     SPOT_SEND="dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2"
-    set_custom_keybind 30 "Switch to Dvorak" "setxkbmap dvorak -option ctrl:nocaps" "Menu"
-    set_custom_keybind 31 "Switch to US" "setxkbmap us -option ctrl:nocaps" "<Shift>Menu"
+    set_custom_keybind 30 "Switch to Dvorak" "setxkbmap dvorak -option ctrl:nocaps" "menu"
+    set_custom_keybind 31 "Switch to US" "setxkbmap us -option ctrl:nocaps" "<Shift>menu"
     set_custom_keybind 32 "Spotify Play/Pause Toggle" "$SPOT_SEND org.mpris.MediaPlayer2.Player.PlayPause" "<Super>space"
     # empty keybind intentional, only turn this on for laptop, not desktop
     set_custom_keybind 33 "Toggle Bluetooth" "bash $HOME/.files/scripts/bt.sh" "" 
     set_custom_keybind 34 "Skip Forward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Next" "<Super>period"
     set_custom_keybind 35 "Skip Backward" "$SPOT_SEND org.mpris.MediaPlayer2.Player.Previous" "<Super>comma"
-    set_custom_keybind 36 "Skip Forward 20 Seconds" "playerctl position 20+" "<Super>A"
-    set_custom_keybind 37 "Skip Backward 20 Seconds" "playerctl position 20-" "<Super><Shift>A"
-    set_custom_keybind 38 "Suspend System" "systemctl suspend" "<Super>Pause"
+    set_custom_keybind 36 "Skip Forward 20 Seconds" "playerctl position 20+" "<Super>a"
+    set_custom_keybind 37 "Skip Backward 20 Seconds" "playerctl position 20-" "<Super><Shift>a"
+    set_custom_keybind 38 "Suspend System" "systemctl suspend" "<Super>pause"
 
     echo "done" 
 }
