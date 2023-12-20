@@ -2,6 +2,7 @@
 # Keybind settings for Gnome setup
 # list the names of keys (not actually sure how to do this)
 # gsettings list-keys org.gnome.settings-daemon.plugins.media-keys
+# TODO: this will not look to see if the new keybind conflicts with an old keybind and remove the old keybind
 
 # Constants
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
