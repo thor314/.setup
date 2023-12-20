@@ -50,8 +50,6 @@ is_existing_custom_keybind() {
 
 
 
-# List of common schemas for default keybindings 
-SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
 # Function to get the list of key names from a schema, skipping over keys with empty bindings
 get_key_names() {
     local schema=$1
@@ -69,11 +67,15 @@ get_key_names() {
 
     echo "${key_names[@]}"
 }
-
-# Usage example:
-SCHEMA="org.gnome.desktop.wm.keybindings"
-key_names=$(get_key_names "$SCHEMA")
-echo $key_names
+# List of common schemas for default keybindings 
+SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
+ALL_KEY_NAMES=()
+for schema in "${SCHEMAS[@]}"; do
+    key_names=$(get_key_names "$schema")
+    ALL_KEY_NAMES+=($key_names)
+    # echo $key_names
+done
+# echo "${ALL_KEY_NAMES[@]}"
 
 is_existing_keybind() {
     local binding=$1
@@ -83,27 +85,17 @@ is_existing_keybind() {
         return 0
     fi
 
-    for schema in "${SCHEMAS[@]}"; do
-        local key_names=$(gsettings list-recursively "$schema" | grep -oP '^\S+\s+\S+' | awk '{print $2}')
-        for key_name in $key_names; do
-            local key_binding_raw=$(gsettings get "$schema" "$key_name")
-            
-            # Skip lines with '@as []'
-            if [[ "$key_binding_raw" == "@as []" ]]; then
-                continue
-            fi
-
-            # Extract the key combination
-            local key_binding=$(echo "$key_binding_raw" | grep -oP "<[^>]+>")
-
-            echo "Checking if $key_binding matches $binding with $key_name"
-            
-            if [[ "$key_binding" == "$binding" ]]; then
-                echo "$key_binding matches $binding"
-                echo true
-                return 0
-            fi
-        done
+    for key_name in ${ALL_KEY_NAMES[@]}; do
+        local key_binding_raw=$(gsettings get "$schema" "$key_name")
+        # Extract the key combination
+        # local key_binding=$(echo "$key_binding_raw" | grep -oP "<[^>]+>")
+        echo "Checking if $key_binding_raw matches $binding with $key_name"
+        
+        if [[ "$key_binding" == "$binding" ]]; then
+            echo "$key_binding matches $binding"
+            echo true
+            return 0
+        fi
     done
 
     echo false
@@ -111,9 +103,9 @@ is_existing_keybind() {
 }
 
 # Example usage
-# is_existing_keybind "<Super>m"
+is_existing_keybind "<Super>m"
 # Example usage
-# is_existing_custom_keybind "<Super>D"
+# is_existing_custom_keybind "<Super>d"
 
 # remove the pre-existing keybind
 remove_keybind() {
