@@ -48,51 +48,46 @@ is_existing_custom_keybind() {
     return 1
 }
 
-
-
-# Function to get the list of key names from a schema, skipping over keys with empty bindings
-get_key_names() {
+# Function to get the list of key names and their bindings from a schema, skipping over keys with empty bindings
+get_key_bindings() {
     local schema=$1
-    local key_names=()
+    declare -A key_bindings
 
-    # Iterate through all keys in the schema
     for key_name in $(gsettings list-keys "$schema"); do
         local key_binding=$(gsettings get "$schema" "$key_name")
 
         # Skip keys with empty bindings
         if [[ "$key_binding" != "@as []" ]]; then
-            key_names+=("$key_name")
+            key_bindings["$key_name"]="$key_binding"
         fi
     done
 
-    echo "${key_names[@]}"
+    echo $(declare -p key_bindings)
 }
-# List of common schemas for default keybindings 
+
+declare -A ALL_KEY_BINDINGS
 SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
-ALL_KEY_NAMES=()
 for schema in "${SCHEMAS[@]}"; do
-    key_names=$(get_key_names "$schema")
-    ALL_KEY_NAMES+=($key_names)
-    # echo $key_names
+    eval "$(get_key_bindings "$schema")"
+    for key in "${!key_bindings[@]}"; do
+        ALL_KEY_BINDINGS["$key"]="${key_bindings["$key"]}"
+    done
 done
-# echo "${ALL_KEY_NAMES[@]}"
 
 is_existing_keybind() {
     local binding=$1
 
     # First, check custom keybindings
     if is_existing_custom_keybind "$binding"; then
+        echo true
         return 0
     fi
 
-    for key_name in ${ALL_KEY_NAMES[@]}; do
-        local key_binding_raw=$(gsettings get "$schema" "$key_name")
-        # Extract the key combination
-        # local key_binding=$(echo "$key_binding_raw" | grep -oP "<[^>]+>")
-        echo "Checking if $key_binding_raw matches $binding with $key_name"
-        
+    for key in "${!ALL_KEY_BINDINGS[@]}"; do
+        local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | grep -oP "<[^>]+>")
+        echo "${ALL_KEY_BINDINGS[$key]}", $key, $key_binding
+        # echo does $key, $key_binding match $binding
         if [[ "$key_binding" == "$binding" ]]; then
-            echo "$key_binding matches $binding"
             echo true
             return 0
         fi
