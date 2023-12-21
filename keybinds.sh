@@ -32,19 +32,18 @@ is_existing_keybind() {
 
     # First, check custom keybindings
     if is_existing_custom_keybind "$binding"; then
-        echo true
         return 0
     fi
 
     for key in "${!ALL_KEY_BINDINGS[@]}"; do
         local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | sed "s/^\['\(.*\)'\]$/\1/")
         if [[ "$key_binding" == "$binding" ]]; then
-            echo $key_binding, $key matches $binding
+            echo $key_binding, $key matches $binding for system keybinds
             return 0
         fi
     done
 
-    echo false
+    echo $binding is not set in system keybinds
     return 1
 }
 
@@ -58,34 +57,37 @@ is_existing_custom_keybind() {
         # Trim leading and trailing characters and get the actual binding
         trimmed_path=$(echo $path | tr -d "'[],")
         actual_binding=$(gsettings get "${MEDIA_KEYS}.custom-keybinding:${trimmed_path}" binding)
+        # echo $actual_binding, $escaped_binding
 
         # Check if the actual binding matches the provided one
         if [[ "$actual_binding" == *"$escaped_binding"* ]]; then
+            echo $escaped_binding already set at $actual_binding
             return 0
         fi
     done
 
+    echo $binding is not set in custom keybinds
     return 1
 }
 # Example usage
 # is_existing_custom_keybind "<Super>d"
 
-get_key_bindings(){
+get_keybinds(){
     SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
     declare -A ALL_KEY_BINDINGS
     for schema in "${SCHEMAS[@]}"; do
-        eval "$(get_key_bindings "$schema")"
+        eval "$(get_key_binds_for_schema "$schema")"
         for key in "${!key_bindings[@]}"; do
             # echo "adding pair $key, ${key_bindings["$key"]}"
             ALL_KEY_BINDINGS["$key"]="${key_bindings["$key"]}"
         done
     done
 
-    echo "${ALL_KEY_BINDINGS[@]}"
+    echo "$(declare -p ALL_KEY_BINDINGS)"
 }
 
 # Function to get the list of key names and their bindings from a schema, skipping over keys with empty bindings
-get_key_bindings_for_schema() {
+get_key_binds_for_schema() {
     local schema=$1
     declare -A key_bindings
 
@@ -167,6 +169,7 @@ tdrop_() {
 # Define custom keybindings
 # Go go go
 create_keybinds() {
+    KEY_BINDINGS=get_keybindings
     reset_keybindings
     create_slots 40
     echo "creating keybinds..." && sleep .3
