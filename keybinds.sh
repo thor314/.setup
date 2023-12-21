@@ -14,59 +14,59 @@ set_custom_keybind() {
     local index=$1
     local name=$2
     local command=$3
-    local binding=$4
+    local bind=$4
 
-    if ! is_existing_keybind "$binding"; then 
-        # TODO: removing system default keybindings seemed hard, so skip this for now
-        remove_keybind $binding
-    fi
+    # if ! is_existing_keybind "$bind"; then 
+    #     # TODO: removing system default keybinds seemed hard, so skip this for now
+    #     remove_keybind $bind
+    # fi
 
-    echo "binding $name to $binding..."
+    echo "binding $name to $bind..."
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" name "${name}"
     gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" command "${command}"
-    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${binding}"
+    gsettings set "${MEDIA_KEYS}.custom-keybinding:${KEYBIND_DIR}/custom${index}/" binding "${bind}"
 }
 
 is_existing_keybind() {
-    local binding=$1
+    local bind=$1
 
-    # First, check custom keybindings
-    if is_existing_custom_keybind "$binding"; then
+    # First, check custom keybinds
+    if is_existing_custom_keybind "$bind"; then
         return 0
     fi
 
     for key in "${!ALL_KEY_BINDINGS[@]}"; do
-        local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | sed "s/^\['\(.*\)'\]$/\1/")
-        if [[ "$key_binding" == "$binding" ]]; then
-            echo $key_binding, $key matches $binding for system keybinds
+        local key_bind=$(echo "${ALL_KEY_BINDINGS[$key]}" | sed "s/^\['\(.*\)'\]$/\1/")
+        if [[ "$key_bind" == "$bind" ]]; then
+            echo $key_bind, $key matches $bind for system keybinds
             return 0
         fi
     done
 
-    echo $binding is not set in system keybinds
+    echo $bind is not set in system keybinds
     return 1
 }
 
 # if the keybind exists either in custom or on the system, return true
 is_existing_custom_keybind() {
-    local binding=$1
-    local escaped_binding=$(printf '%s\n' "$binding" | sed 's/[]\/$*.^[]/\\&/g')  # Escape special characters for grep
+    local bind=$1
+    local escaped_bind=$(printf '%s\n' "$bind" | sed 's/[]\/$*.^[]/\\&/g')  # Escape special characters for grep
 
-    # Iterate over each custom binding path
+    # Iterate over each custom bind path
     for path in ${CUSTOM_BINDINGS//,/ }; do
-        # Trim leading and trailing characters and get the actual binding
+        # Trim leading and trailing characters and get the actual bind
         trimmed_path=$(echo $path | tr -d "'[],")
-        actual_binding=$(gsettings get "${MEDIA_KEYS}.custom-keybinding:${trimmed_path}" binding)
-        # echo $actual_binding, $escaped_binding
+        actual_bind=$(gsettings get "${MEDIA_KEYS}.custom-keybinding:${trimmed_path}" bind)
+        # echo $actual_bind, $escaped_bind
 
-        # Check if the actual binding matches the provided one
-        if [[ "$actual_binding" == *"$escaped_binding"* ]]; then
-            echo $escaped_binding already set at $actual_binding
+        # Check if the actual bind matches the provided one
+        if [[ "$actual_bind" == *"$escaped_bind"* ]]; then
+            echo $escaped_bind already set at $actual_bind
             return 0
         fi
     done
 
-    echo $binding is not set in custom keybinds
+    echo $bind is not set in custom keybinds
     return 1
 }
 # Example usage
@@ -74,64 +74,60 @@ is_existing_custom_keybind() {
 
 get_keybinds(){
     SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.media-keys")
-    declare -A ALL_KEY_BINDINGS
+    declare -A ALL_KEY_BINDS
     for schema in "${SCHEMAS[@]}"; do
         eval "$(get_key_binds_for_schema "$schema")"
-        for key in "${!key_bindings[@]}"; do
-            # echo "adding pair $key, ${key_bindings["$key"]}"
-            ALL_KEY_BINDINGS["$key"]="${key_bindings["$key"]}"
+        for key in "${!key_binds[@]}"; do
+            # echo "adding pair $key, ${key_binds["$key"]}"
+            ALL_KEY_BINDINGS["$key"]="${key_binds["$key"]}"
         done
     done
 
-    echo "$(declare -p ALL_KEY_BINDINGS)"
+    echo "$(declare -p ALL_KEY_BINDS)"
 }
 
-# Function to get the list of key names and their bindings from a schema, skipping over keys with empty bindings
+# Function to get the list of key names and their binds from a schema, skipping over keys with empty binds
 get_key_binds_for_schema() {
     local schema=$1
-    declare -A key_bindings
+    declare -A key_binds
 
     for key_name in $(gsettings list-keys "$schema"); do
-        local key_binding=$(gsettings get "$schema" "$key_name")
+        local key_bind=$(gsettings get "$schema" "$key_name")
 
-        # Skip keys with empty bindings
-        if [[ "$key_binding" != "@as []" ]] && [[ "$key_binding" != "['']" ]] && [[ "$key_name" != "custom-keybindings" ]]; then
-            key_bindings["$key_name"]="$key_binding"
+        # Skip keys with empty binds
+        if [[ "$key_bind" != "@as []" ]] && [[ "$key_bind" != "['']" ]] && [[ "$key_name" != "custom-keybindings" ]]; then
+            key_binds["$key_name"]="$key_bind"
         fi
     done
 
-    echo $(declare -p key_bindings)
+    echo $(declare -p key_binds)
 }
 
 # remove the pre-existing keybind
 remove_keybind() {
   # TODO: maybe one day
-  local binding=$1
-  local keybind=$2
-  echo removing $keybind at $binding
+  local command=$1
+  local bind=$2
+  echo removing $command at $bind
 }
 
-# Register space for custom keybindings, use first argument for number of slots to create
+# Register space for custom keybinds, use first argument for number of slots to create
 create_slots() {
     echo "creating $1 slots..." && sleep .2
-    keybindings=()
+    keybinds=()
     for i in $(seq 0 $1 ); do
-        keybindings+=("${KEYBIND_DIR}/custom${i}/")
+        keybinds+=("${KEYBIND_DIR}/custom${i}/")
     done
-    #echo gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
-    gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybindings[@]}" | sed 's/, $//') ]"
-    #echo "\n" gsettings set "${MEDIA_KEYS}" custom-keybindings "['${keybindings[@]}']" "\n"
+    gsettings set "${MEDIA_KEYS}" custom-keybindings "[ $(printf "'%s', " "${keybinds[@]}" | sed 's/, $//') ]"
     echo "done" 
 }
 
+# Firefox tab lists
 morning_tabs=(
     "https://www.coingecko.com/en/portfolio"
     "https://eprint.iacr.org/days/7"
     "https://tweetdeck.twitter.com/"
     "https://github.com/thor314"
-    #"https://feedly.com/"
-    #"https://news.ycombinator.com/front"
-    #"https://zkmesh.substack.com/"
 )
 
 news_tabs=(
@@ -140,7 +136,6 @@ news_tabs=(
     "https://zkmesh.substack.com/"
 )
 
-# List of tabs for Firefox Pinned keybinding
 pinned_tabs=(
     "https://chat.openai.com/"
     "https://calendar.google.com/calendar/u/0/r/week"
@@ -166,11 +161,10 @@ tdrop_() {
 }
 
 
-# Define custom keybindings
 # Go go go
 create_keybinds() {
-    KEY_BINDINGS=get_keybindings
-    reset_keybindings
+    # KEY_BINDINGS=get_keybinds
+    # reset_keybinds
     create_slots 40
     echo "creating keybinds..." && sleep .3
 
@@ -209,7 +203,4 @@ create_keybinds() {
 
 # TO TEST THIS SCRIPT:
 # comment out this line and test commands
-# create_keybinds
-
-is_existing_keybind "<Super>m"
-is_existing_custom_keybind "<Super>d"
+create_keybinds
