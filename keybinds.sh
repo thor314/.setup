@@ -47,6 +47,8 @@ is_existing_custom_keybind() {
 
     return 1
 }
+# Example usage
+# is_existing_custom_keybind "<Super>d"
 
 # Function to get the list of key names and their bindings from a schema, skipping over keys with empty bindings
 get_key_bindings() {
@@ -57,7 +59,7 @@ get_key_bindings() {
         local key_binding=$(gsettings get "$schema" "$key_name")
 
         # Skip keys with empty bindings
-        if [[ "$key_binding" != "@as []" ]] && [[ "$key_binding" != "['']"]] && [["$key_name" != custom-keybindings ]]; then
+        if [[ "$key_binding" != "@as []" ]] && [[ "$key_binding" != "['']" ]] && [[ "$key_name" != "custom-keybindings" ]]; then
             key_bindings["$key_name"]="$key_binding"
         fi
     done
@@ -70,7 +72,7 @@ SCHEMAS=("org.gnome.desktop.wm.keybindings" "org.gnome.settings-daemon.plugins.m
 for schema in "${SCHEMAS[@]}"; do
     eval "$(get_key_bindings "$schema")"
     for key in "${!key_bindings[@]}"; do
-        echo "adding pair $key, ${key_bindings["$key"]}"
+        # echo "adding pair $key, ${key_bindings["$key"]}"
         ALL_KEY_BINDINGS["$key"]="${key_bindings["$key"]}"
     done
 done
@@ -86,9 +88,9 @@ is_existing_keybind() {
     fi
 
     for key in "${!ALL_KEY_BINDINGS[@]}"; do
-        local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | grep -oP "<[^>]+>")
-        # echo "${ALL_KEY_BINDINGS[$key]}", $key, $key_binding
-        # echo does $key, $key_binding match $binding
+        # local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" )
+        local key_binding=$(echo "${ALL_KEY_BINDINGS[$key]}" | sed "s/^\['\(.*\)'\]$/\1/")
+        echo does $key_binding match $binding
         if [[ "$key_binding" == "$binding" ]]; then
             echo true
             return 0
@@ -100,9 +102,7 @@ is_existing_keybind() {
 }
 
 # Example usage
-is_existing_keybind "<Super>m"
-# Example usage
-# is_existing_custom_keybind "<Super>d"
+# is_existing_keybind "<Super>m"
 
 # remove the pre-existing keybind
 remove_keybind() {
