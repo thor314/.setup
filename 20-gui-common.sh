@@ -24,7 +24,8 @@ flatpak install -y flathub org.gimp.GIMP
 # installing code is a mess, every other installation is worse
 echo -e "\n\n install vsCode: https://code.visualstudio.com/Download"
 echo -e "\n\n install edge: https://www.microsoft.com/en-us/edge/download"
-echo -e "\n\n install android messages: https://github.com/chrisknepper/android-messages-desktop/releases/tag/v3.1.0" 
+
+echo -e "\n\n install android messages: https://github.com/OrangeDrangon/android-messages-desktop/releases/tag/v5.4.2" 
 read -p "press enter to continue"
 
 # espanso, a customizeable and platform agnostic text expander
