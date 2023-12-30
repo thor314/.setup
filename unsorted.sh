@@ -18,3 +18,4 @@ git clone https://github.com/penumbra-zone/penumbra clones
 # cargo run --quiet --release --bin pcli view address 0
 
 sudo apt install webp # webp cli tools
+sudo apt-get -y install surfraw surfraw-extra
