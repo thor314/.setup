@@ -16,6 +16,7 @@ gh repo clone blog
 mkdir img && cd img
 gh repo clone backgrounds 
 gh repo clone profile 
+gh repo clone official-images
 cd 
 gh repo clone .keep
 gh repo clone .cron 
