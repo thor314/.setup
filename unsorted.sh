@@ -18,9 +18,11 @@ git clone https://github.com/penumbra-zone/penumbra clones
 # cargo run --quiet --release --bin pcli view address 0
 
 sudo apt install webp # webp cli tools
-sudo apt-get -y install surfraw surfraw-extra
+sudo apt-get -y install surfraw surfraw-extra # common internet search tools cli
 
-# virtual camera for linux, required for linux-fake-background
-firefox --new-tab https://github.com/webcamoid/akvcam/releases
-echo "download latest cli. to install: chmod +x *cli*.run && ./*cli*.run" 
+# note about webcamoid - can't install, remove eventually
+# more hassle than worth, akvcam badly documented elsewhere and webcamoid poorly maintained
+# # virtual camera for linux, required for linux-fake-background
+# firefox --new-tab https://github.com/webcamoid/akvcam/releases
+# echo "download latest cli. to install: chmod +x *cli*.run && ./*cli*.run" 
 
