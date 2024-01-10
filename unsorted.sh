@@ -19,3 +19,8 @@ git clone https://github.com/penumbra-zone/penumbra clones
 
 sudo apt install webp # webp cli tools
 sudo apt-get -y install surfraw surfraw-extra
+
+# virtual camera for linux, required for linux-fake-background
+firefox --new-tab https://github.com/webcamoid/akvcam/releases
+echo "download latest cli. to install: chmod +x *cli*.run && ./*cli*.run" 
+
