@@ -20,9 +20,14 @@ git clone https://github.com/penumbra-zone/penumbra clones
 sudo apt install webp # webp cli tools
 sudo apt-get -y install surfraw surfraw-extra # common internet search tools cli
 
+### Web cam manipulation
 # note about webcamoid - can't install, remove eventually
 # more hassle than worth, akvcam badly documented elsewhere and webcamoid poorly maintained
 # # virtual camera for linux, required for linux-fake-background
 # firefox --new-tab https://github.com/webcamoid/akvcam/releases
 # echo "download latest cli. to install: chmod +x *cli*.run && ./*cli*.run" 
 
+### Proton VPN
+firefox --new-tab https://protonvpn.com/support/official-linux-vpn-debian/
+echo "download the latest protonvpn cli and install with eddy"
+sudo apt-get install proton-vpn-gnome-desktop
