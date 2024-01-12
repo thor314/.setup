@@ -23,7 +23,7 @@ gh repo clone .cron
 
 gh repo clone official
 gh repo clone invoice
-
+gh repo clone obsidian-setup
 
 mkdir r && cd r
 gh repo clone tmpl
