@@ -22,7 +22,7 @@ git clone git@github.com:thor314/.setup.git
 git config --global user.name "Thor Kampefner"
 ```
 
-then: `git config --global user.email "$EMAIL"`
+then: `git config --global user.email "$EMAIL"` 
 
 Then work through the parts. Not fun, but makes the most reproducible and easiest to debug builds. 
 
