@@ -3,7 +3,7 @@
 
 source $HOME/.cargo/env
 cargo install ripgrep # better grep
-cargo install zellij
+# cargo install zellij # commented 2024-01-25
 cargo install du-dust # replace du, df
 cargo install bottom --locked # top replacements
 cargo install --git https://github.com/bvaisvil/zenith.git
