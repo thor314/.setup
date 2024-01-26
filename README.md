@@ -1,42 +1,58 @@
 # Setting up a new machine:
 Before installing on a new machine, need to sync an ssh key with github. Paste the following:
+
 ```sh
+# 1. We need to create an ssh key, so that Github lets us clone this repo.
+echo -e "\n\nGenerate an ssh key:"
+# may have to set hostname manually!
+ssh-keygen -t ed25519 -C key-thor-$(hostname) 
+ssh-add ~/.ssh/
+
+# 2. Install github communication and keychain CLIs. Tell github about the ssh key.
+sudo apt install -y gh hub keychain
+echo "will open a browser and authenticate with Github."
+gh auth login
+gh ssh-key add ~/.ssh/id_ed25519.pub
+echo "confirm our new key is listed."
+echo "is the comment set correctly to key-thor-HOSTNAME?"
+gh ssh-key list
+
+# 3. Install stuff.
+git clone git@github.com:thor314/.setup.git
+```
+
+Then work through the parts. 
+
+### Comforting security blanket slash reminder to self about script vs syncing from snapshot
+This setup script is slow and Not Fun, but does reduce reproducibility issues down the line.
+
+## Todo:
+-  2024-01-26 next major update: separate the high-interactive parts from the not-so-interactive parts, so we can parallelize them. 
+  - eg. logging into all the GUIs annoying and have few dependencies, do that while apt/cargo etc. install themselves.
+- 2024-12-24 refactored keybind set script. Test the refactored keybind script more on next install. 
+  - known issue: will not unbind system keybinds, have to do that manually.
+
+## Settings to include early that make life good
+Figure out where to include these in the install script:
+```
+## these settings have not been tested
 # set caps lock to ctrl
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
 # revert: gsettings reset org.gnome.desktop.input-sources xkb-options
 # or mannualy: Open Gnome Tweaks to map Capslock to Ctrl
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
-
-echo -e "\n\nGenerate an ssh key:"
-ssh-keygen -t ed25519 -C thorck@pm.me
-ssh-add
-
-# will open a browser and authenticate with github
-sudo apt install -y gh
-sudo apt install -y hub
-gh auth login
-
-git clone git@github.com:thor314/.setup.git
-
 git config --global user.name "Thor Kampefner"
+git config --global user.email "$EMAIL"
 ```
 
-then: `git config --global user.email "$EMAIL"` 
-
-Then work through the parts. Not fun, but makes the most reproducible and easiest to debug builds. 
-
-Todo: 
-- test the refactored keybind script
-- maybe: do the gui installs first, so I can log into everything while installing all my binaries
-
-2023-11-03 debug note: tried to refactor with MEDIA_KEYS and BIND_DIR, as well as multi-line strings. May cause
-issues, will have to test next install.
-
-## Pending recurring issue
-If issues with system keyboard persist:
+### Pending recurring issue
+If issues with system keyboard not-dvorak persist:
 ```
 # localectl list-x11-keymap-variants # see list of keymap options
 sudo localectl set-x11-keymap dvorak
 sudo update-initramfs -u # update initial ramdisk to apply changes at boot time
 ```
+
+## changelog
+- 2024-01-26 - I should have a changelog
