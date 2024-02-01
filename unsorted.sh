@@ -34,3 +34,9 @@ sudo apt-get install proton-vpn-gnome-desktop
 
 # ssh key manager
 sudo apt -y install keychain
+
+hub clone --recursive gm $HOME/gm
+hub clone --recursive rust-playground
+hub clone --recursive python-playground
+hub clone --recursive web-playground
+
