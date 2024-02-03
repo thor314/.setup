@@ -40,4 +40,4 @@ hub clone --recursive rust-playground
 hub clone --recursive python-playground
 hub clone --recursive web-playground
 
-cargo install typos-cli # repo typo-checker
+cargo install typos-cli # code typo-checker
