@@ -7,6 +7,8 @@ sudo apt install -y evince # secondary pdf viewer, after Zotero
 
 # I'm learning: use flatpak > snap in general. Tends to be well maintained, low overhead
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
+# flatpak install -y flathub org.chromium.Chromium
+sudo apt install -y chromium-browser
 flatpak install -y flathub org.chromium.Chromium
 #flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, +tdrop issues, see below
 flatpak install -y flathub md.obsidian.Obsidian
