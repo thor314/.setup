@@ -12,14 +12,17 @@ cargo install pipe-rename # file renamer tool
 sudo apt -y install libssl-dev # cgen dep
 cargo install cargo-generate
 cargo install rusty-rain
-cargo install taplo-cli --locked # toml formatter
+cargo install taplo-cli --locked # toml formatter, sometimes buggy
 cargo install sd # search replace, nicer than sed
 cargo install fd-find # find replacement
 sudo ln -s /usr/bin/fdfind /usr/bin/fd # necessary for fish fzf plugin
 cargo install texlab # tex langu server https://github.com/latex-lsp/texlab
-# Quick install binaries, don't compile them https://github.com/cargo-bins/cargo-            quickinstall 
+# Quick install binaries, don't compile them https://github.com/cargo-bins/cargo-quickinstall 
 cargo install cargo-quickinstall
 cargo quickinstall gitoxide # git modifiers https://github.com/Byron/gitoxide
+
+cargo install cargo-binstall
+cargo binstall cargo-shuttle # api deployment tool https://docs.shuttle.rs/getting-started/installation
 
 # option to install more bat tools
 # https://github.com/eth-p/bat-extras/blob/master/README.md#installation
