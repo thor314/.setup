@@ -41,3 +41,7 @@ hub clone --recursive python-playground
 hub clone --recursive web-playground
 
 cargo install typos-cli # code typo-checker
+
+sudo apt-get install libpq-dev -y # dependencies for diesel-cli
+cargo install diesel_cli --no-default-features --features postgres
+
