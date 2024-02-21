@@ -44,4 +44,5 @@ cargo install typos-cli # code typo-checker
 
 sudo apt-get install postgresql postgresql-contrib libpq-dev -y # dependencies for diesel-cli
 cargo install diesel_cli --no-default-features --features postgres
-
+# set up the postgres user to allow all user/password combinations
+echo "host    all             all             127.0.0.1/32            md5" > sudo tee -a /etc/postgresql/10/main/pg_hba.conf
