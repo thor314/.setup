@@ -53,3 +53,17 @@ sudo service postgresql restart && sleep 3
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';" 
 sudo service postgresql restart && sleep 3 
 
+# mkdeb, a simplicity focused pcakaging tool for debian archives
+# https://www.makedeb.org/
+bash -ci "$(wget -qO - 'https://shlink.makedeb.org/install')"
+
+# just, a command runner
+# https://github.com/casey/just#shell-completion-scripts
+git clone https://mpr.makedeb.org/just
+pushd just
+makedeb -si
+sudo dpkg -i just_*_amd64.deb
+popd
+
+# find unused dependencies
+cargo install cargo udeps
