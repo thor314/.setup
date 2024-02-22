@@ -5,7 +5,8 @@ sudo apt install -y python3-dev python3-pip python3-setuptools
 
 # Rust
 # curl https://sh.rustup.rs -sSf | sh -s -- -y # interactive
-curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
+# curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup update && rustup toolchain install nightly && rustup default nightly
 
