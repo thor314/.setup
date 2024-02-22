@@ -27,6 +27,8 @@ cargo binstall cargo-shuttle # api deployment tool https://docs.shuttle.rs/getti
 # option to install more bat tools
 # https://github.com/eth-p/bat-extras/blob/master/README.md#installation
 sudo apt install bat -y
-mkdir -p ~/.local/bin
+if [ ! -d "$HOME/.local/bin" ]; then
+  mkdir -p ~/.local/bin
+fi
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
