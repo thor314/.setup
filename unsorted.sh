@@ -1,10 +1,24 @@
+#!/usr/bin/env fish 
+echo "hey idiot, don't run this script, it's unstable AF. Run lines one-by-one"
+echo "    _ _   "
+echo "   /    \ "
+echo "  /      |"
+echo " / bonk /"
+echo "/      / "
+echo "|     /  "
+echo "|    /   "
+echo "|   /    "
+echo " \ /     "
+echo " ||      "
+echo " ||      "
+exit 1
+
 # recent commands (as of 2023-03-21)
 flatpak install -y flathub com.slack.Slack
 flatpak install -y flathub com.valvesoftware.Steam # steam games seem to only sometimes work on linux
 
 # Penumbra cli
 # https://guide.penumbra.zone/main/pcli/install.html#linux
-# break
 sudo apt install build-essential pkg-config libssl-dev clang git-lfs -y
 git clone https://github.com/penumbra-zone/penumbra clones
 #cd clones/penumbra && git fetch && git checkout v0.63.1
