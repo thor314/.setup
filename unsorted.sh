@@ -1,10 +1,10 @@
 # recent commands (as of 2023-03-21)
 flatpak install -y flathub com.slack.Slack
-flatpak install flathub com.valvesoftware.Steam
+flatpak install -y flathub com.valvesoftware.Steam # steam games seem to only sometimes work on linux
 
 # Penumbra cli
 # https://guide.penumbra.zone/main/pcli/install.html#linux
-break
+# break
 sudo apt install build-essential pkg-config libssl-dev clang git-lfs -y
 git clone https://github.com/penumbra-zone/penumbra clones
 #cd clones/penumbra && git fetch && git checkout v0.63.1
@@ -40,19 +40,6 @@ hub clone --recursive rust-playground
 hub clone --recursive python-playground
 hub clone --recursive web-playground
 
-cargo install typos-cli # code typo-checker
-
-# POSTGRES SETUP
-# https://github.com/diesel-rs/diesel/blob/master/.github/workflows/ci.yml#L65
-sudo apt-get install postgresql postgresql-contrib libpq-dev -y # dependencies for diesel-cli
-cargo install diesel_cli --no-default-features --features postgres
-# set up the postgres user to allow all user/password combinations
-echo "host    all             all             127.0.0.1/32            md5" > sudo tee -a /etc/postgresql/14/main/pg_hba.conf
-sudo service postgresql restart && sleep 3
-# ignore this error, it still works; 'could not change directory to $current_dir: Permission denied'
-sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';" 
-sudo service postgresql restart && sleep 3 
-
 # mkdeb, a simplicity focused pcakaging tool for debian archives
 # https://www.makedeb.org/
 bash -ci "$(wget -qO - 'https://shlink.makedeb.org/install')"
@@ -64,6 +51,3 @@ pushd just
 makedeb -si
 sudo dpkg -i just_*_amd64.deb
 popd
-
-# find unused dependencies
-cargo install cargo udeps

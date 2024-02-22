@@ -9,6 +9,8 @@ sudo apt install -y python3-dev python3-pip python3-setuptools
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup update && rustup toolchain install nightly && rustup default nightly
+cargo install cargo-binstall # fast cargo binary installer
+cargo binstall lsd # don't wait
 
 # Go
 url=$(curl -s https://go.dev/dl/ | grep -o 'href="/dl/go[0-9]*\.[0-9]*\.[0-9]*\.linux-amd64\.tar\.gz"' | awk -F'"' '{print "https://go.dev"$2}' | tail -n 1)
