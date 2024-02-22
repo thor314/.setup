@@ -33,8 +33,8 @@ cargo binstall -y fd-find # find replacement
 cargo binstall -y cargo-shuttle # server deployment with shuttle.rs https://docs.shuttle.rs/getting-started/installation
 cargo binstall -y cargo-update # update cargo binaries https://github.com/nabijaczleweli/cargo-update
 
-# experimental
 
+# experimental
 cargo binstall -y rusty-rain # fun
 cargo binstall -y du-dust # replace du, df; can also use deb-get; https://github.com/bootandy/dust
 cargo binstall -y bottom --locked # top replacements
@@ -42,4 +42,10 @@ cargo binstall -y pipe-rename # file renamer tool
 cargo binstall -y texlab # tex langu server https://github.com/latex-lsp/texlab
 cargo install --git https://github.com/bvaisvil/zenith.git
 cargo quickinstall gitoxide # git modifiers https://github.com/Byron/gitoxide
+
+# wasm toolchain
+cargo binstall -y --locked trunk # wasm bundler
+cargo binstall -y --locked wasm-bindgen-cli
+rustup target add wasm32-unknown-unknown
+
 # cargo install zellij # commented 2024-01-25
