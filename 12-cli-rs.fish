@@ -58,6 +58,9 @@ cargo binstall -y gitoxide # git modifiers https://github.com/Byron/gitoxide
 cargo install --git https://github.com/bvaisvil/zenith.git
 # cargo install zellij # commented 2024-01-25
 
+# pride and joy
+cargo binstall -y runi # https://crates.io/crates/runi
+
 # cannot binstall
 cargo install diesel_cli --no-default-features --features postgres # db orm cli
 
