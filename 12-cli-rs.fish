@@ -46,6 +46,7 @@ cargo binstall -y cargo-update # update cargo binaries https://github.com/nabija
 cargo binstall -y typos-cli # code comment typo-checker
 cargo binstall -y cargo-udeps # show unused dependencies
 cargo binstall -y cargo-deps # show dependency graph
+cargo binstall -y tokei # code line counter
 
 # experimental
 cargo binstall -y rusty-rain # fun
