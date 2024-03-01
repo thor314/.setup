@@ -8,17 +8,6 @@ source $HOME/.cargo/env
 sudo apt -y install libssl-dev # cargo gen dep
 sudo ln -s /usr/bin/fdfind /usr/bin/fd # necessary for fish fzf plugin
 
-# POSTGRES SETUP
-# todo move this elsewhere
-# https://github.com/diesel-rs/diesel/blob/master/.github/workflows/ci.yml#L65
-sudo apt-get install postgresql postgresql-contrib libpq-dev -y # dependencies for diesel-cli
-# set up the postgres user to allow all user/password combinations
-echo "host    all             all             127.0.0.1/32            md5" > sudo tee -a /etc/postgresql/14/main/pg_hba.conf
-sudo service postgresql restart && sleep 3
-# ignore this error, it still works; 'could not change directory to $current_dir: Permission denied'
-sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';" 
-sudo service postgresql restart && sleep 3 
-
 # todo(02-22-24): this maybe shouldn't be here
 # option to install more bat tools
 # https://github.com/eth-p/bat-extras/blob/master/README.md#installation
