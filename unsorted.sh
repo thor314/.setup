@@ -43,8 +43,8 @@ sudo apt-get -y install surfraw surfraw-extra # common internet search tools cli
 
 ### Proton VPN
 firefox --new-tab https://protonvpn.com/support/official-linux-vpn-debian/
-echo "download the latest protonvpn cli and install with eddy"
-sudo apt-get install proton-vpn-gnome-desktop
+echo "download the latest protonvpn cli, following the instructions above"
+sleep 3
 
 # ssh key manager
 sudo apt -y install keychain
