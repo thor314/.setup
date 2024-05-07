@@ -84,6 +84,7 @@ create_keybinds() {
     set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>t"
     set_custom_keybind 6 "tdrop Spotify" "$(tdrop_ spotify false)" "<Super><Shift>s"
     set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
+    set_custom_keybind 8 "tdrop Slack" "$(tdrop_ slack true com.slack.Slack)" "<Super>w"
 
     # the following do not play nice w tdrop
     set_custom_keybind 10 "Feeling Finder" "flatpak run true codes.merritt.FeelingFinder" "<Super>e"
