@@ -1,4 +1,6 @@
+#!/bin/bash
 # history started 2024-10
+read -p "are you sure you want to run an unsorted script of random nonsense? Ctrl-C to quit, enter to proceed"
 
 # todo: move to home.sh and fine-tune
 hub clone --recursive rust-playground
