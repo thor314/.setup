@@ -3,9 +3,11 @@
 
 This setup script is slow and Not Fun, but does reduce reproducibility issues down the line.
 
-Before installing on a new machine, we need to sync an ssh key with github. 
+This setup aims to be self-documenting, and may be interesting to others nerds who like configuring computers for fun.
+See `changelog.md` for a short history of changes,
+and `tool-backlog.md` for a short list of tools I'd like to try eventually.
 
-See changelog.md for short history.
+Before installing on a new machine, we need to sync an ssh key with github. 
 
 ```sh
 # 1. We need to create an ssh key, so that Github lets us clone this repo.
