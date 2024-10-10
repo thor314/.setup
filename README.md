@@ -41,6 +41,34 @@ sudo localectl set-x11-keymap dvorak
 sudo update-initramfs -u # update initial ramdisk to apply changes at boot time
 ```
 
+### after this script
+still to do: 
+- settings
+    - desktop - background set manually, hide minimize button
+    - notifications - ignore this for now, but we will have to turn these off
+    - power - adjust power saving options
+    - mouse speed up and natural scrolling on
+    - keyboard - keybindings - some keybindings have conflicts and need to be manually updated
+    - users - profile pic update
+    - about - update hostname if haven't already
+    - os upgrade - update recovery partition (takes awhile; do last)
+- sign into firefox, set up 1password
+    - firefox settings search - turn off suggestions and shortcuts
+    - privacy - turn off autofill
+    - setup hotkey tabs
+        - m https://mail.proton.me/u/2/inbox
+        - c https://calendar.google.com/calendar/u/0/r
+        - t https://assistant.google.com/tasks
+        - o https://chat.openai.com/
+        - g https://github.com/thor314
+        - w https://tweetdeck.twitter.com
+        - x https://x.com/messages
+        - p https://docs.google.com/spreadsheets/d/17u74o6Z5y6o8YGpMzJ4YLM3dF01WkwoUYblAS8wHqoM
+        - f https://www.facebook.com/messages/t
+        - r https://feedly.com/
+- sign into obsidian and sync vault
+
+
 ## changelog
 - 2024-10-09 - major refactor overhaul
 - 2024-01-26 - I should have a changelog
