@@ -35,20 +35,6 @@ git clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && c
 # linter for dotenv files https://github.com/dotenv-linter/dotenv-linter
 curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
 
-# just dependency: makedeb
-# mkdeb, a simplicity focused pcakaging tool for debian archives
-# https://www.makedeb.org/
-bash -ci "$(wget -qO - 'https://shlink.makedeb.org/install')"
-
-# just, a command runner
-# https://github.com/casey/just#shell-completion-scripts
-git clone https://mpr.makedeb.org/just
-pushd just
-makedeb -si
-sudo dpkg -i just_*_amd64.deb
-popd
-rm -rf just
-
 # espanso, a customizeable and platform agnostic text expander
 wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
 sudo apt install ./espanso-debian-x11-amd64.deb -y
@@ -62,9 +48,24 @@ wget https://github.com/leona/helix-gpt/releases/download/0.34/helix-gpt-0.34-x8
   && mv helix-gpt-0.34-x86_64-linux ~/.local/bin/helix-gpt \
   && chmod +x ~/.local/bin/helix-gpt
 
-# Broken install:
+# Broken installs:
 # zola, an SSG written in Rust (reqires docker)
 # git clone https://github.com/barnumbirr/zola-debian 
 # sudo sh zola-debian/build.sh
 # sudo dpkg -i zola-debian/target/zola*.deb
 # rm zola-debian -r
+
+# # just dependency: makedeb
+# # mkdeb, a simplicity focused pcakaging tool for debian archives
+# # https://www.makedeb.org/
+# bash -ci "$(wget -qO - 'https://shlink.makedeb.org/install')"
+
+# # just, a command runner
+# # https://github.com/casey/just#shell-completion-scripts
+# git clone https://mpr.makedeb.org/just
+# pushd just
+# makedeb -si
+# sudo dpkg -i just_*_amd64.deb
+# popd
+# rm -rf just
+

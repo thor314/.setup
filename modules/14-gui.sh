@@ -30,13 +30,11 @@ read -p "press enter to continue"
 
 # spotify backup
 # https://www.spotify.com/us/download/linux/
-#flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, +tdrop issues, see below
-curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+flatpak install -y flathub com.spotify.Client # flatpak spotify more gui issues than bin, +tdrop issues, see below
+# curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+# echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 # Then you can install the Spotify client:
-sudo apt-get update && sudo apt-get install spotify-client
-# also install playerctl for cli tools
-sudo apt install -y playerctl
+# sudo apt-get update && sudo apt-get install spotify-client
 
 # firefox --new-tab https://protonvpn.com/support/official-linux-vpn-debian/
 # read -p "download the latest protonvpn cli, following the instructions above"

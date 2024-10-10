@@ -1,9 +1,9 @@
-2024-10-09 17:44:41 [INFO] Log files cleared
-2024-10-09 17:44:41 [INFO] Logging initialized
-2024-10-09 17:44:41 [INFO] Starting Thor's Pop!_OS installation and update script
-2024-10-09 17:44:41 [INFO] Starting module: 12-rs
-2024-10-09 17:46:00 [SUCCESS] Module 12-rs completed successfully
-2024-10-09 17:46:00 [INFO] Starting module: 15-other
-2024-10-09 17:47:03 [SUCCESS] Module 15-other completed successfully
-2024-10-09 17:47:03 [SUCCESS] Installation and update process completed successfully
-2024-10-09 17:47:03 [SUCCESS] Script completed successfully
+2024-10-09 21:29:43 [INFO] Log files cleared
+2024-10-09 21:29:43 [INFO] Logging initialized
+2024-10-09 21:29:43 [INFO] Starting Thor's Pop!_OS installation and update script
+2024-10-09 21:29:43 [INFO] Starting module: 15-other
+2024-10-09 21:30:21 [SUCCESS] Module 15-other completed successfully
+2024-10-09 21:30:21 [INFO] Starting module: 20-keybinds
+2024-10-09 21:30:23 [SUCCESS] Module 20-keybinds completed successfully
+2024-10-09 21:30:23 [SUCCESS] Installation and update process completed successfully
+2024-10-09 21:30:23 [SUCCESS] Script completed successfully
