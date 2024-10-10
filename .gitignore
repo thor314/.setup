@@ -1,0 +1,8 @@
+archive
+zsh.d/zsh_history
+debs/*
+*.deb
+clones/*
+*zcompdump*
+*.swp
+cronlog
