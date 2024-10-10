@@ -30,21 +30,11 @@ Then work through the parts.
 ### Comforting security blanket slash reminder to self about script vs syncing from snapshot
 This setup script is slow and Not Fun, but does reduce reproducibility issues down the line.
 
-## Todo:
-- 2024-08-13 - install `proton-mail` gui
--  2024-01-26 next major update: separate the high-interactive parts from the not-so-interactive parts, so we can parallelize them. 
-    - eg. logging into all the GUIs annoying and have few dependencies, do that while apt/cargo etc. install themselves.
-- 2024-12-24 refactored keybind set script. Test the refactored keybind script more on next install. 
-    - known issue: will not unbind system keybinds, have to do that manually.
-
 ## Settings to include early that make life good
 Figure out where to include these in the install script:
+
 ```
 ## these settings have not been tested
-# set caps lock to ctrl
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
-# revert: gsettings reset org.gnome.desktop.input-sources xkb-options
-# or mannualy: Open Gnome Tweaks to map Capslock to Ctrl
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
 git config --global user.name "Thor Kampefner"
@@ -60,4 +50,7 @@ sudo update-initramfs -u # update initial ramdisk to apply changes at boot time
 ```
 
 ## changelog
+- 2024-10-09 - major refactor overhaul
 - 2024-01-26 - I should have a changelog
+- 2023-12-24 refactored keybind set script. Test the refactored keybind script more on next install. 
+    - known issue: will not unbind system keybinds, have to do that manually.
