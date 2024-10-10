@@ -49,6 +49,19 @@ sudo dpkg -i just_*_amd64.deb
 popd
 rm -rf just
 
+# espanso, a customizeable and platform agnostic text expander
+wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
+sudo apt install ./espanso-debian-x11-amd64.deb -y
+espanso service register
+espanso start
+rm espanso-*
+
+wget https://github.com/leona/helix-gpt/releases/download/0.34/helix-gpt-0.34-x86_64-linux.tar.gz \
+  -O /tmp/helix-gpt.tar.gz \
+  && tar -zxvf /tmp/helix-gpt.tar.gz \
+  && mv helix-gpt-0.34-x86_64-linux ~/.local/bin/helix-gpt \
+  && chmod +x ~/.local/bin/helix-gpt
+
 # Broken install:
 # zola, an SSG written in Rust (reqires docker)
 # git clone https://github.com/barnumbirr/zola-debian 
