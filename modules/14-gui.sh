@@ -16,7 +16,7 @@ flatpak install -y flathub org.signal.Signal
 flatpak install -y flathub com.discordapp.Discord
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
-flatpak install -y flathub org.telegram.Telegram
+flatpak install -y flathub org.telegram.dekstop
 flatpak install -y flathub com.slack.Slack
 flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 # flatpak install -y flathub com.obsproject.Studio
