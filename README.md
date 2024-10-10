@@ -23,23 +23,15 @@ gh ssh-key list
 
 # 3. Install stuff.
 git clone git@github.com:thor314/.setup.git
+
+# misc convenient:
+gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
 ```
 
 Then work through the parts. 
 
 ### Comforting security blanket slash reminder to self about script vs syncing from snapshot
 This setup script is slow and Not Fun, but does reduce reproducibility issues down the line.
-
-## Settings to include early that make life good
-Figure out where to include these in the install script:
-
-```
-## these settings have not been tested
-gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
-gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h']"
-git config --global user.name "Thor Kampefner"
-git config --global user.email "$EMAIL"
-```
 
 ### Pending recurring issue
 If issues with system keyboard not-dvorak persist:
