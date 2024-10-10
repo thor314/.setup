@@ -13,6 +13,7 @@ sudo apt install -y gist # github gists
 sudo apt install -y pandoc # export text files to other text files 
 sudo apt install -y fzf # fuzzy finder, also see fd, sd
 sudo apt install -y webp # webp cli tools
+sudo apt install -y duf # df replacement
 
 # airplay mirroring for ipad to linux; note uxplay sometimes requires `uxplay -avdec` to correctly decode ipad data
 sudo apt -y install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-tools
