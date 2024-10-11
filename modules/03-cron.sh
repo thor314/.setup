@@ -8,7 +8,7 @@ read -p "press enter to continue after you have copied the crontab"
 crontab -e
 
 echo -e "\n\nput the following in my sudo crontab:"
-echo -e "0 12 * * * apt update && sudo apt upgrade -y"
+echo -e "0 14 * * * apt update && sudo apt upgrade -y"
 read -p "press enter to continue after you have copied the crontab"
 sudo crontab -e
 
