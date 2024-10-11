@@ -1,3 +1,4 @@
+*.log
 archive
 zsh.d/zsh_history
 debs/*
