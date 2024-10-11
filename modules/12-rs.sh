@@ -39,7 +39,7 @@ cargo binstall -y typos-cli # code comment typo-checker
 cargo binstall -y du-dust # replace du, df; can also use deb-get; https://github.com/bootandy/dust
 cargo binstall -y pipe-rename # file renamer tool
 cargo binstall -y gitoxide # git modifiers https://github.com/Byron/gitoxide
-# cargo install zellij # commented 2024-01-25
+cargo binstall -y zellij 
 # deprecated 2024-10 
 # cargo binstall -y texlab # tex langu server https://github.com/latex-lsp/texlab
 
