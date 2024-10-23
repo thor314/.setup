@@ -30,3 +30,6 @@ sudo apt -y install protobuf-compiler
 pip install llm
 llm keys set openai # paste openai key
 llm install llm-cmd
+
+# settings panel to fix sound issues
+sudo apt -y install pavucontrol
