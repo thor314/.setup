@@ -26,3 +26,7 @@ cargo install --path circom && rm -rf circom
 npm install -g snarkjs
 sudo apt -y install protobuf-compiler 
 
+# llm
+pip install llm
+llm keys set openai # paste openai key
+llm install llm-cmd
