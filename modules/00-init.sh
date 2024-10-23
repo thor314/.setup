@@ -36,6 +36,7 @@ source $HOME/.cargo/env
 rustup update && rustup toolchain install nightly && rustup default nightly
 cargo install cargo-binstall # fast cargo binary installer
 cargo binstall -y lsd # don't wait to install my ls command
+# rustup component add rust-analyzer # uncomment if rust-analyzer unpackaged with installation
 
 # this version needs to be updated pretty much every time
 wget https://go.dev/dl/go1.23.2.linux-amd64.tar.gz
@@ -56,7 +57,7 @@ echo -e "$(hostname -I | cut --delimiter=' ' -f1)\n\n"
 echo "get shared key from another machine. From my other trusted machine, enter:"
 echo "gpg --export-secret-keys thor-shared | ssh thor@IPADDRESS gpg --import"
 echo "note that not all my users are named thor"
-read -p "waiting for user..."
+read -rp "waiting for user..."
 
 # keychain checks for running ssh-agent, saves pw entry
 # https://man.archlinux.org/man/extra/keychain/keychain.1.en
@@ -71,7 +72,7 @@ echo -e "\n\nInstall alacritty"
 # from https://github.com/alacritty/alacritty/blob/master/INSTALL.md#debianubuntu
 sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 scdoc
 git clone git@github.com:alacritty/alacritty.git
-cd alacritty
+cd alacritty || exit 1
 cargo build --release
 sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
 sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
