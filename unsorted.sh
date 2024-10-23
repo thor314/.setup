@@ -18,3 +18,11 @@ sed -i '/LABEL="gdm_prefer_xorg"/,/LABEL="gdm_end"/ s/^RUN+=/# &/' /usr/lib/udev
 sudo apt install -y cosmic-session
 read -p "the following will logout. Reboot, and login back in with Cosmic DE. Press enter."
 sudo systemctl restart gdm
+
+## pluto circom tooling
+git clone https://github.com/iden3/circom.git
+cd circom && cargo build --release
+cargo install --path circom && rm -rf circom
+npm install -g snarkjs
+sudo apt -y install protobuf-compiler # circomoc
+
