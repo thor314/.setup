@@ -7,7 +7,7 @@
 # Constants
 MEDIA_KEYS="org.gnome.settings-daemon.plugins.media-keys"
 KEYBIND_DIR="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
-CUSTOM_BINDS=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
+# CUSTOM_BINDS=$(gsettings get "${MEDIA_KEYS}" custom-keybindings)
 
 # Function to set a custom keybinding
 set_custom_keybind() {
@@ -58,6 +58,9 @@ join_array() {
     local IFS="$1"; shift; echo "$*";
 }
 
+# 2024-10-24 what over-engineered LLM-fueled nonsense did I let them sell me
+# it works... but deprecate this incrementally
+#
 # Function to generate a tdrop command with an option for Flatpak applications
 tdrop_() {
     local app_name=$1
@@ -81,12 +84,11 @@ create_keybinds() {
     set_custom_keybind 2 "tdrop Discord" "$(tdrop_ discord true com.discordapp.Discord)" "<Super>d"
     set_custom_keybind 3 "tdrop Obsidian" "$(tdrop_ obsidian true md.obsidian.Obsidian)" "<Super>o"
     set_custom_keybind 4 "tdrop Firefox" "$(tdrop_ firefox false)" "<Super>f"
-    set_custom_keybind 5 "tdrop Telegram" "$(tdrop_ telegram true org.telegram.desktop)" "<super><shift>t"
-    set_custom_keybind 6 "tdrop Spotify" "$(tdrop_ spotify false)" "<Super><Shift>s"
+    set_custom_keybind 5 "tdrop Telegram" "tdrop -ma -h 100% -w 50% -n telegram --class=telegram flatpak run org.telegram.desktop"
+    set_custom_keybind 6 "tdrop spotify" "tdrop -ma -h 100% -w 50% -n spotify --class=spotify flatpak run com.spotify.Client"
     set_custom_keybind 7 "Alacritty" "alacritty" "<Super>t"
     set_custom_keybind 8 "tdrop Slack" "$(tdrop_ slack true com.slack.Slack)" "<Super>w"
     set_custom_keybind 9 "tdrop proton-mail" "tdrop proton-mail" "<Super><Shift>m"
-
 
     # the following do not play nice w tdrop
     set_custom_keybind 10 "Feeling Finder" "flatpak run true codes.merritt.FeelingFinder" "<Super>e"
