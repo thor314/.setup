@@ -33,3 +33,6 @@ llm install llm-cmd
 
 # settings panel to fix sound issues
 sudo apt -y install pavucontrol
+
+npm install -g @hackmd/hackmd-cli && hackmd-cli login
+
