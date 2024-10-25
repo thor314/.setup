@@ -22,7 +22,7 @@ sudo systemctl restart gdm
 ## pluto circom tooling
 git clone https://github.com/iden3/circom.git
 cd circom && cargo build --release
-cargo install --path circom && rm -rf circom
+cargo install --path circom && cd .. && rm -rf circom
 npm install -g snarkjs
 sudo apt -y install protobuf-compiler 
 
