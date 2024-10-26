@@ -64,9 +64,14 @@ read -rp "waiting for user..."
 sudo apt install -y keychain
 
 echo -e "\n\nInstall the Fish Shell..."
-sudo apt-add-repository -y ppa:fish-shell/release-3 
+# apt repository fish version 1-3 years trailing release
+# sudo apt-add-repository -y ppa:fish-shell/release-3 
+# sudo apt update
+# sudo apt install -y fish
+echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
 sudo apt update
-sudo apt install -y fish
+sudo apt install fish
 
 echo -e "\n\nInstall alacritty"
 # from https://github.com/alacritty/alacritty/blob/master/INSTALL.md#debianubuntu
