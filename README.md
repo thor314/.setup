@@ -80,3 +80,20 @@ If issues with system keyboard not-dvorak persist:
 sudo localectl set-x11-keymap dvorak
 sudo update-initramfs -u # update initial ramdisk to apply changes at boot time
 ```
+
+### 2024-10-26 temporary: setup tide with jj info
+
+```sh
+fisher remove IlanCosman/tide
+git clone git@github.com:ETCaton/tide.git && cd tide
+git checkout jj-item
+fisher install . # will be prompted to configure
+cd .. && rm tide
+
+# adjust prompt items
+# echo $tide_left_prompt_items # see prompt items
+set -U tide_left_prompt_items pwd git jj newline character
+
+# Add .jj to the pwd markers
+set -U tide_pwd_markers $tide_pwd_markers .jj
+```
