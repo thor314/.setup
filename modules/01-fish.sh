@@ -13,7 +13,7 @@ fisher install meaningful-ooo/sponge # remove typos from history
 set -U sponge_delay 10 # more than default:  2
 
 fisher install nickeb96/puffer-fish # use ... to go up 2 dirs
-fisher install Gazorby/fish-abbreviation-tips # alias reminders
+# fisher install Gazorby/fish-abbreviation-tips # alias reminders
 fisher install jhillyerd/plugin-git # git aliases
 
 tide configure
