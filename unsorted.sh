@@ -36,3 +36,6 @@ sudo apt -y install pavucontrol
 
 npm install -g @hackmd/hackmd-cli && hackmd-cli login
 
+# modern colorized strace utility
+# https://github.com/sectordistrict/intentrace
+cargo binstall -y intentrace
