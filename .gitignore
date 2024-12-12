@@ -2,7 +2,7 @@
 archive
 zsh.d/zsh_history
 debs/*
-*.deb
+*.deb*
 clones/*
 *zcompdump*
 *.swp
