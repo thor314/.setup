@@ -39,3 +39,9 @@ npm install -g @hackmd/hackmd-cli && hackmd-cli login
 # modern colorized strace utility
 # https://github.com/sectordistrict/intentrace
 cargo binstall -y intentrace
+
+# default pandoc version is years behind (2.9 vs 3.6 as of 2024-12-12)
+# https://github.com/jgm/pandoc/releases
+wget https://github.com/jgm/pandoc/releases/download/3.6/pandoc-3.6-1-amd64.deb
+sudo dpkg -i pandoc-3.6-1-amd64.deb
+rm pandoc* 
