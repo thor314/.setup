@@ -12,7 +12,7 @@ flatpak install -y flathub md.obsidian.Obsidian
 flatpak install -y flathub us.zoom.Zoom  
 flatpak install -y flathub org.zotero.Zotero
 flatpak install -y flathub com.github.eneshecan.WhatsAppForLinux
-flatpak install -y flathub org.signal.Signal
+
 flatpak install -y flathub com.discordapp.Discord
 # https://github.com/micahflee/torbrowser-launcher
 flatpak install -y flathub com.github.micahflee.torbrowser-launcher 
@@ -25,6 +25,13 @@ flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 # https://www.spotify.com/us/download/linux/
 # unclear whether flatpak spotify or deb has more more gui issues 
 flatpak install -y flathub com.spotify.Client
+
+# signal flatpak has had 3 separate runtime issues in the last year (2025-04-02), use deb install
+# flatpak install -y flathub org.signal.Signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+sudo mv signal-desktop-keyring.gpg /usr/share/keyrings/
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update && sudo apt install signal-desktop
 
 echo "go to telegram settings: advanced: turn off tray icon (and OpenGL if rendering issues), and all notifications"
 
