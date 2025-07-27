@@ -4,6 +4,12 @@
 # a fast npm https://pnpm.io/installation
 npm i -g pnpm
 # curl -fsSL https://get.pnpm.io/install.sh | sh - # uncomment if above bugs
+
+# fish language server install and configure completions
+# https://github.com/ndonfris/fish-lsp?tab=readme-ov-file#installation
+pnpm install -g fish-lsp
+fish-lsp complete > ~/.config/fish/completions/fish-lsp.fish
+
 pnpm i -g vite
 
 pnpm i -g create-react-app
