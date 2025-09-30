@@ -23,8 +23,15 @@ flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 # flatpak install -y flathub org.gimp.GIMP
 
 # https://www.spotify.com/us/download/linux/
-# unclear whether flatpak spotify or deb has more more gui issues 
-flatpak install -y flathub com.spotify.Client
+# unclear whether flatpak spotify or deb has more issues 
+
+# 2025-09-30 - spotify flatpak breaking on search, moving back to apt
+# flatpak install -y flathub com.spotify.Client
+
+# https://www.spotify.com/us/download/linux/
+curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
 
 # signal flatpak has had 3 separate runtime issues in the last year (2025-04-02), use deb install
 # flatpak install -y flathub org.signal.Signal
@@ -44,11 +51,6 @@ read -p "press enter to continue"
 ###########
 # ARCHIVE #
 ###########
-# old spotify installation
-# curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-# echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-# Then you can install the Spotify client:
-# sudo apt-get update && sudo apt-get install spotify-client
 
 # firefox --new-tab https://protonvpn.com/support/official-linux-vpn-debian/
 # read -p "download the latest protonvpn cli, following the instructions above"
