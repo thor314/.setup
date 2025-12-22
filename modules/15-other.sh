@@ -36,8 +36,9 @@ git clone https://github.com/noctuid/tdrop && cd tdrop && sudo make install && c
 curl -sSfL https://git.io/JLbXn | sh -s -- -b "$HOME/.share/bin" v2.0.0
 
 # espanso, a customizeable and platform agnostic text expander
-wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
-sudo apt install ./espanso-debian-x11-amd64.deb -y
+wget https://github.com/espanso/espanso/releases/download/v2.3.0/espanso-debian-wayland-amd64.deb
+sudo apt install ./espanso-debian-wayland-amd64.deb -y
+sudo setcap "cap_dac_override+p" $(which espanso)
 espanso service register
 espanso start
 rm espanso-*
