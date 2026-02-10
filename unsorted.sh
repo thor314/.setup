@@ -45,3 +45,7 @@ cargo binstall -y intentrace
 wget https://github.com/jgm/pandoc/releases/download/3.6/pandoc-3.6-1-amd64.deb
 sudo dpkg -i pandoc-3.6-1-amd64.deb
 rm pandoc* 
+
+# 2026-02-10 - CosmicDE external keyboard bug - Cosmic will not display number entry pairing prompt.
+# fix: install Gnome, log into a gnome session, pair, log out. You will need to restart after installing GNOME.
+# sudo apt install gnome-session gnome-shell
