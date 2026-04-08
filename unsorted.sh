@@ -2,6 +2,10 @@
 # history started 2024-10
 read -rp "are you sure you want to run an unsorted script of random nonsense? Ctrl-C to quit, enter to proceed"
 
+# system controls daemon
+systemctl --user daemon-reload
+systemctl --user enable --now focus-guard
+
 # todo: move to home.sh and fine-tune
 hub clone --recursive rust-playground
 hub clone --recursive python-playground
