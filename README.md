@@ -25,7 +25,7 @@ echo "will open a browser and authenticate with Github."
 # will tell github about our new ssh key, though the key will have a dumb name (GitHub CLI)
 gh auth login
 # goto github.com/settings/keys and delete that key, add it with the correct name
-gh ssh-key add .ssh/id_ed25519.pub
+gh ssh-key add $HOME/.ssh/id_ed25519.pub
 echo "confirm our new key is listed."
 gh ssh-key list
 
