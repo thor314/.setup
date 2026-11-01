@@ -26,12 +26,13 @@ flatpak install -y flathub codes.merritt.FeelingFinder # emoji picker
 # unclear whether flatpak spotify or deb has more issues 
 
 # 2025-09-30 - spotify flatpak breaking on search, moving back to apt
+# 2026-10-31 - apt spotify not running, try flatpak again
 # flatpak install -y flathub com.spotify.Client
 
 # https://www.spotify.com/us/download/linux/
-curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
+# curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+# echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+# sudo apt-get update && sudo apt-get install spotify-client
 
 # signal flatpak has had 3 separate runtime issues in the last year (2025-04-02), use deb install
 # flatpak install -y flathub org.signal.Signal
